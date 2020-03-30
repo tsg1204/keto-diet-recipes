@@ -1,6 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "homepage": "http://tsg1204.github.io/expo-gh-pages",
+  "homepage": "https://tsg1204.github.io/keto-diet-recipes/",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
