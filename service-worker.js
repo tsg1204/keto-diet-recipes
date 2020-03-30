@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/expo-gh-pages/precache-manifest.32d5c5987cbbec21ae75dfe13a69a6c5.js"
+  "/keto-diet-recipes/precache-manifest.5d1b7b342201783b02ceb6e0ed9d36d1.js"
 );
 
 workbox.skipWaiting();
@@ -29,7 +29,7 @@ self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute("/expo-gh-pages/index.html", {
+workbox.routing.registerNavigationRoute("/keto-diet-recipes/index.html", {
   
   blacklist: [/^\/_/,/\/[^\/]+\.[^\/]+$/],
 });
