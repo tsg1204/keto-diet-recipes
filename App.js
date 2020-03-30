@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Deploy to Heroku Test!</Text>
+      <Text>Deploy to Heroku Test! Deploy to Heroku Test!</Text>
     </View>
   );
 }
