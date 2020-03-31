@@ -1,7 +1,7 @@
 {
   "files": {
-    "app.js": "/keto-diet-recipes/static/js/app.dd88b5d2.chunk.js",
-    "app.js.map": "/keto-diet-recipes/static/js/app.dd88b5d2.chunk.js.map",
+    "app.js": "/keto-diet-recipes/static/js/app.f11d7bc0.chunk.js",
+    "app.js.map": "/keto-diet-recipes/static/js/app.f11d7bc0.chunk.js.map",
     "runtime~app.js": "/keto-diet-recipes/static/js/runtime~app.749d9242.js",
     "runtime~app.js.map": "/keto-diet-recipes/static/js/runtime~app.749d9242.js.map",
     "static/js/2.946aa8d5.chunk.js": "/keto-diet-recipes/static/js/2.946aa8d5.chunk.js",
@@ -26,12 +26,12 @@
     "favicon.ico": "/keto-diet-recipes/favicon.ico",
     "index.html": "/keto-diet-recipes/index.html",
     "manifest.json": "/keto-diet-recipes/manifest.json",
-    "precache-manifest.8e5a7fcdfaeb4c94d7106143b17c4672.js": "/keto-diet-recipes/precache-manifest.8e5a7fcdfaeb4c94d7106143b17c4672.js",
+    "precache-manifest.bb3dffb41b2ce761ec89e4444a8bec62.js": "/keto-diet-recipes/precache-manifest.bb3dffb41b2ce761ec89e4444a8bec62.js",
     "serve.json": "/keto-diet-recipes/serve.json"
   },
   "entrypoints": [
     "static/js/runtime~app.749d9242.js",
     "static/js/2.946aa8d5.chunk.js",
-    "static/js/app.dd88b5d2.chunk.js"
+    "static/js/app.f11d7bc0.chunk.js"
   ]
 }
