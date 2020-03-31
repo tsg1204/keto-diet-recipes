@@ -1,12 +1,12 @@
 
-const CATEGORIES = [
+export const CATEGORIES = [
   {id: '1', title: '15 minute meals'},
   {id: '2', title: 'Low carb'},
   {id: '3', title: 'Quick & Easy'},
-  {id: '4', title:'Refined sugar'},
+  {id: '4', title:'Refined sugar'}
 ];
 
-const MEALS = [
+export const MEALS = [
   {
     id: '1',
     category: ['1'],
@@ -145,5 +145,5 @@ const MEALS = [
       'Heat a non-stick frying pan over medium-high heat. Add 1 tsp of the remaining oil. Pour 1/4-cupful of batter into the pan and gently swirl to create a pancake about 12cm in diameter. Cook for 1-2 minutes, until bubbles begin to form on the surface and the pancake is golden underneath. Carefully flip and cook for a further 1-2 minutes, until golden on both sides and cooked through. Transfer to a plate and cover loosely with foil to keep warm. Repeat with the remaining mixture (and remaining 1 tsp oil, if needed) until all the batter has been used.',
       'Divide the pancakes among serving plates. Top each stack with 11 ⁄2 tbs ricotta, if you like. Scatter with the mixed berries and serve with a light drizzle of maple syrup.'
     ]
-  },
+  }
 ];
