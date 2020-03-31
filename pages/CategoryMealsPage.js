@@ -1,15 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button , Platform } from 'react-native';
 
-import { CATEGORIES } from '../data/dummy-data';
+import { CATEGORIES, Colors } from '../data/data';
 
 const CategoryMealPage = props => {
   //get category id from categories page via props.navigation
   const catId = props.navigation.getParam('categoryId');
-
   //retrive the selected category from categories list
   const selectedCat = CATEGORIES.find( cat => cat.id === catId);
-
 
   return (
     <View style={styles.container}>
@@ -23,6 +21,19 @@ const CategoryMealPage = props => {
     }} />
     </View>
   );
+};
+
+CategoryMealPage['navigationOptions'] = (navigationData) => {
+  const catId = navigationData.navigation.getParam('categoryId');
+  const selectedCat = CATEGORIES.find( cat => cat.id === catId);
+
+  return {
+    headerTitle: selectedCat.title,
+    headerStyle: {
+      backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
+    },
+    headerTintColor: Colors.secondaryColor 
+  }
 };
 
 const styles = StyleSheet.create({

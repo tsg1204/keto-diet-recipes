@@ -6,14 +6,9 @@ import {
  } from 'react-native-responsive-screen';
 import Constants from 'expo-constants';
 
-import { CATEGORIES } from '../data/dummy-data';
+import { CATEGORIES, Colors } from '../data/data';
 //https://reactnative.dev/docs/flatlist
 //https://reactnative.dev/docs/platform-specific-code
-
-const Colors = {
-  primaryColor: '#8bc34a',
-  secondaryColor: '#795548' 
-}
 
 const CategoriesPage = props => {
   const renderGridItem = itemData => {
@@ -21,6 +16,7 @@ const CategoriesPage = props => {
       <TouchableOpacity
         style={styles.gridItem}
         onPress={() => {
+          //pass data to another page with params
           props.navigation.navigate({ routeName: 'CategoryMeals', params: {
             categoryId: itemData.item.id
           } });

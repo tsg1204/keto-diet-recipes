@@ -1,3 +1,7 @@
+export const Colors = {
+  primaryColor: '#8bc34a',
+  secondaryColor: '#795548' 
+}
 
 export const CATEGORIES = [
   {id: '1', title: '15 minute meals'},
