@@ -15,7 +15,7 @@ export const MEALS = [
     id: '1',
     category: ['1'],
     title: 'Chilli, pea, bacon and fetta pasta',
-    imageUrl: 'https://www.taste.com.au/recipes/chilli-pea-bacon-fetta-pasta/33614666-7560-4104-aa66-69a475992890?r=recipes/15minutemeals&c=c422d621-5603-46d9-bbcc-46cc60bb6a3b/15%20minute%20meals',
+    imageUrl: 'https://img.taste.com.au/yN_83Ze6/w643-h428-cfill-q90/taste/2016/11/chilli-pea-bacon-and-fetta-pasta-105956-1.jpeg',
     duration: 10,//duration
     ingredients: [
       '375g orecchiette pasta',
