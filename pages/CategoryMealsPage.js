@@ -17,10 +17,16 @@ const CategoryMealPage = ({ navigation }) => {
   const meals = MEALS.filter( meal => meal.category.indexOf(catId) >= 0);
 
   function ListItem(props) {
-    const { image, title, duration, onSelectItem } = props;
+    const { id, image, title, duration } = props;
     return (
       <View style={styles.listItem}>
-        <TouchableOpacity onPress={onSelectItem}>
+        <TouchableOpacity 
+          onPress={() => {
+            navigation.navigate('MealDetails', {
+                itemId: id
+            });
+          }}          
+        >
           <View>
             <View style={{ ...styles.listRow, ...styles.listHeader }}>
               <ImageBackground
@@ -46,14 +52,10 @@ const CategoryMealPage = ({ navigation }) => {
   const renderListItem = itemData => {
     return (
       <ListItem
+        id={itemData.item.id}
         title={itemData.item.title}
         image={itemData.item.imageUrl}
         duration={itemData.item.duration}
-        onSelectItem={() => {
-          navigation.navigate('MealDetail', {
-              itemId: itemData.item.id
-          });
-        }}
       />
     );
   };
@@ -95,9 +97,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     marginVertical: 10,
-    marginHorizontal: Platform.OS === 'ios' ? 30 : 100,
+    marginHorizontal: Platform.OS === 'ios' ? 15 : 100,
   },
   bgImage: {
+    //have to adjust images size
     width: Platform.OS === 'ios' ? Dimensions.get('screen').width : Dimensions.get('window').width,
     height: Platform.OS === 'ios' ? Dimensions.get('screen').width*.5 : Dimensions.get('window').width*.2,
     justifyContent: 'flex-end',
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
   },
   duration: {
     fontFamily: 'open-sans',
-    fontSize: hp('1.8%'),
+    fontSize: hp('1.7%'),
   }
 });
 
