@@ -62,12 +62,17 @@ const styles = StyleSheet.create({
   gridItem: {
     flex: 1,
     margin: 15,
-    width: wp('20%'),
+    width: wp('40%'),
     backgroundColor: '#ffd54f',
   },
   title: {
+    fontFamily: 'open-sans-bold',
     fontSize: hp('2%'),
     height: hp('5%'),
+    color: Colors.secondaryColor,
+    textAlign: 'center',
+    paddingLeft: 30,
+    justifyContent: 'space-evenly',    
   }
 });
 
