@@ -28,7 +28,7 @@ CategoryMealPage['navigationOptions'] = (navigationData) => {
   const selectedCat = CATEGORIES.find( cat => cat.id === catId);
 
   return {
-    headerTitle: selectedCat.title,
+    headerTitle: `Category: ${selectedCat.title}`,
     headerStyle: {
       backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
     },

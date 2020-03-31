@@ -10,19 +10,18 @@ import { CATEGORIES, Colors } from '../data/data';
 //https://reactnative.dev/docs/flatlist
 //https://reactnative.dev/docs/platform-specific-code
 
-const CategoriesPage = props => {
+const CategoriesPage = ({ navigation })=> {
   const renderGridItem = itemData => {
     return (
       <TouchableOpacity
         style={styles.gridItem}
         onPress={() => {
-          //pass data to another page with params
-          props.navigation.navigate({ routeName: 'CategoryMeals', params: {
+          navigation.navigate('CategoryMeals', {
             categoryId: itemData.item.id
-          } });
+          });
         }}
       >
-        <View>
+        <View style={styles.title}>
           <Text>{itemData.item.title}</Text>
         </View>
       </TouchableOpacity>
@@ -36,14 +35,14 @@ const CategoriesPage = props => {
           keyExtractor={(item) => item.id}
           data={CATEGORIES}
           renderItem={renderGridItem}
-          numColumns={2}
+          //numColumns={2}
       />    
       </SafeAreaView>
     );
 };
 
 CategoriesPage['navigationOptions'] = {
-  headerTitle: 'Keto Recipes Categories',
+  title: 'Keto Recipes Categories',
   headerStyle: {
     backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
   },
@@ -61,15 +60,15 @@ const styles = StyleSheet.create({
     //height: hp('100%')
   },
   gridItem: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-    height: hp('20%')
+    flex: 1,
+    margin: 15,
+    width: wp('20%'),
+    backgroundColor: '#ffd54f',
   },
   title: {
     fontSize: hp('2%'),
-  },
+    height: hp('5%'),
+  }
 });
 
 export default CategoriesPage;
