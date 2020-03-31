@@ -1,0 +1,151 @@
+import Category from '../models/category';
+import Meal from '../models/meal';
+
+export const CATEGORIES = [
+  new Category('c1', '15 minute meals', '#b2ff59'),
+  new Category('c2', 'Low carb', '#ffcc80'),
+  new Category('c3', 'Quick & Easy', '#ef9a9a'),
+  new Category('c4', 'Refined sugar', '#b39ddb'),
+];
+
+export const MEALS = [
+  new Meal(
+    'm1',
+    ['c1'],
+    'Chilli, pea, bacon and fetta pasta',
+    'https://www.taste.com.au/recipes/chilli-pea-bacon-fetta-pasta/33614666-7560-4104-aa66-69a475992890?r=recipes/15minutemeals&c=c422d621-5603-46d9-bbcc-46cc60bb6a3b/15%20minute%20meals',
+    10,//duration
+    [
+      '375g orecchiette pasta',
+      '1 1/2 cups frozen peas',
+      '175g shortcut bacon rashers, trimmed, chopped',
+      '4 garlic cloves, thinly sliced',
+      '1 long red chilli, thinly sliced',
+      '80g marinated fetta, reserving',
+      '2 tablespoons marinating oil',
+      '1/2 cup fresh mint leaves'
+    ],
+    [
+      'Cook pasta following packet directions until tender, adding peas for the last 2 minutes of cooking time. Drain.',
+      'Meanwhile, heat olive oil in a large, deep frying pan over medium-high heat. Add bacon and garlic. Cook for 4 minutes or until golden. Add chilli. Cook for 1 minute or until softened.',
+      'Add pasta, crumbled fetta, reserved marinating oil and mint to bacon mixture. Season with salt and pepper. Toss to combine. Serve.'
+    ]
+  ),
+  new Meal(
+    'm2',
+    ['c1'],
+    'Burgers with the lot',
+    'https://img.taste.com.au/CSuK5ujx/w643-h428-cfill-q90/taste/2016/11/burgers-with-the-lot-101230-1.jpeg',
+    6,//duration
+    [
+      '150g canned beetroot, drained, grated',
+      '2 tablespoons olive oil',
+      '500g beef mince',
+      '1 garlic clove, crushed',
+      'Finely grated zest of 1/2 lemon',
+      '1 tablespoon chopped rosemary leaves',
+      '2 tablespoons marinating oil1 tablespoon chopped oregano leaves',
+      '1/2 cup fresh mint leav4 English muffins, split, toastedes',
+      '1 cup rocket leaves',
+      '2 tomatoes, sliced',
+      '4 eggs, fried sunny-side up'
+    ],
+    [
+      'To make the beetroot relish, combine beetroot with 1 tbs olive oil. Season.ook pasta following packet directions until tender, adding peas for the last 2 minutes of cooking time. Drain.',
+      'Combine the beef with the garlic, lemon zest and herbs, then season. Use your hands to shape mixture into four 9cm patties. Heat remaining 1 tbs oil in a frypan over medium heat and cook for 3 minutes each side or until cooked to your liking.Meanwhile, heat olive oil in a large, deep frying pan over medium-high heat. Add bacon and garlic. Cook for 4 minutes or until golden. Add chilli. Cook for 1 minute or until softened.',
+      'Layer the muffin bases with rocket, tomato, beetroot relish, patties and eggs, then season and top with muffin lids.Add pasta, crumbled fetta, reserved marinating oil and mint to bacon mixture. Season with salt and pepper. Toss to combine. Serve.'
+    ]
+  ),
+  new Meal(
+    'm3',
+    ['c2'],
+    'Olive oil poached salmon',
+    'https://img.taste.com.au/lESTs8vn/w643-h428-cfill-q90/taste/2016/11/olive-oil-84695-2.jpeg',
+    45,//duration
+    [
+      '2 small lemons, thinly sliced',
+      '8 sprigs fresh basil, trimmed',
+      '2 garlic cloves, thinly sliced',
+      '1 teaspoon whole black peppercorns',
+      '1 tablespoon capers, roughly chopped',
+      '4 (750g) salmon fillets',
+      '3 cups olive oil',
+      'Baby spinach, to serve',
+      'Tomato, to serve',
+      'Kalamata olives, to ser',
+      'Red onion, to serve'
+    ],
+    [
+      'Preheat oven to 130°C/110°C fan-forced. Place half the lemon slices over the base of an 8 cup-capacity ovenproof dish. Top with half the basil, half the garlic, half the peppercorns and half the capers. Place fish in dish. Top with remaining basil, garlic, peppercorns and capers. Pour oil over fish (oil should just cover fish).',
+      'Bake fish for 40 to 45 minutes for medium or until cooked to your liking.',
+      'Using a slotted spoon, transfer fish to a plate. Flake. Serve with lemon slices and spinach mixture.'
+    ]
+  ),
+  new Meal(
+    'm4',
+    ['c3'],
+    'Lemon haloumi with fried capers',
+    'https://img.taste.com.au/3leubigm/w720-h480-cfill-q80/taste/2016/11/lemon-haloumi-with-fried-capers-72418-1.jpeg',
+    10,//duration
+    [
+      '1 1/2 tablespoons extra virgin olive oil',
+      '180g haloumi, sliced',
+      '2 small red birdseye chillies, thinly sliced',
+      '2 teaspoons drained baby capers',
+      '1 teaspoon finely grated lemon rind',
+      '2 tablespoons lemon juice',
+      '80g mixed lettuce leaves'
+    ],
+    [
+      'Heat 2 teaspoons oil in a large frying pan over medium-high heat. Cook haloumi, in batches, for 2 minutes each side or until golden. Transfer to a plate.',
+      'Heat remaining oil in pan. Add chilli and capers. Cook, stirring, for 3 to 5 minutes or until capers are heated through and chilli is golden. Add rind. Cook, stirring, for 1 minute. Stir in juice. Bring to a simmer.',
+      'Arrange haloumi and lettuce on a serving plate. Drizzle with hot lemon mixture. Season with pepper. Serve immediately.'
+    ]
+  ),
+  new Meal(
+    'm5',
+    ['c4'],
+    'Sugar-free mango and coconut balls',
+    'https://img.taste.com.au/enssRrT8/w643-h428-cfill-q90/taste/2018/12/sugar-free-mango-and-coconut-balls-145720-2.jpg',
+    20,//duration
+    [
+      '125g dried mango',
+      '50g (2/3 cup) shredded coconut',
+      '50g (1/2 cup) rolled oats',
+      '145g (1 cup) raw cashews',
+      '60g (3/4 cup) desiccated coconut',
+      '1 tablespoon finely grated lime zest',
+      '1 teaspoon vanilla extract'
+    ],
+    [
+      'Use kitchen scissors to cut the mango into small (about 1.5cm) pieces. Place in a heatproof bowl and pour 125 ml (½ cup) of boiling water. Set aside for 10-15 minutes, stirring occasionally, or until mango has softened and water absorbed.',
+      'Place the shredded coconut in a frying pan and stir over medium heat for about 3 minutes or until golden. Transfer to a plate to cool.',
+      'Process the oats a food processor until well chopped. Add the cashews, desiccated coconut, lime zest, vanilla, a pinch of salt and mango (with any water that may not have absorbed). Process until well combined.'
+    ]
+  ),
+  new Meal(
+    'm6',
+    ['c4'],
+    'Better-for-you banana pancakes',
+    'https://img.taste.com.au/ae10R411/w643-h428-cfill-q90/taste/2018/01/better-for-you-banana-pancakes-134286-1.jpg',
+    50,//duration
+    [
+      '100g mashed banana (about 1 medium banana)',
+      '150g (1 cup) wholemeal plain flour or purple wheat plain flour (see tip)',
+      '60g (1/2 cup) almond meal or hazelnut meal',
+      '1 teaspoon ground cinnamon',
+      '4 eggs',
+      '150ml milk kefir (see tip)',
+      '1 tablespoon virgin macadamia oil or coconut oil',
+      '2 teaspoons baking powder',
+      '125g (1/2 cup) fresh ricotta, to serve (optional)',
+      'Mixed berries, to serve',
+      'Pure maple syrup, to serve'
+    ],
+    [
+      'Place the banana, flour, nut meal, cinnamon, eggs, kefir and 2 tsp oil in a blender or a food processor. Blend or process until smooth and well combined. Add the baking powder and process for a further 5-10 seconds, until just combined.',
+      'Heat a non-stick frying pan over medium-high heat. Add 1 tsp of the remaining oil. Pour 1/4-cupful of batter into the pan and gently swirl to create a pancake about 12cm in diameter. Cook for 1-2 minutes, until bubbles begin to form on the surface and the pancake is golden underneath. Carefully flip and cook for a further 1-2 minutes, until golden on both sides and cooked through. Transfer to a plate and cover loosely with foil to keep warm. Repeat with the remaining mixture (and remaining 1 tsp oil, if needed) until all the batter has been used.',
+      'Divide the pancakes among serving plates. Top each stack with 11 ⁄2 tbs ricotta, if you like. Scatter with the mixed berries and serve with a light drizzle of maple syrup.'
+    ]
+  ),
+];
