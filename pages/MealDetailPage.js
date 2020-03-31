@@ -1,20 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const MealDetailScreen = props => {
+const MealDetailPage = props => {
   return (
-    <View style={styles.screen}>
-      <Text>The Meal Detail Screen!</Text>
+    <View style={styles.container}>
+      <Text>The Meal Detail Page!</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  screen: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   }
 });
 
-export default MealDetailScreen;
+export default MealDetailPage;

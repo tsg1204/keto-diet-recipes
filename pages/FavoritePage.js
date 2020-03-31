@@ -1,20 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const FavoritesScreen = props => {
+const FavoritesPage = props => {
   return (
-    <View style={styles.screen}>
-      <Text>The Favorites Screen!</Text>
+    <View style={styles.container}>
+      <Text>The Favorites Page!</Text>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  screen: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   }
 });
 
-export default FavoritesScreen;
+export default FavoritesPage;

@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { Text, View , StyleSheet} from 'react-native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
+import { SafeAreaProvider , initialWindowSafeAreaInsets } from 'react-native-safe-area-context';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+ } from 'react-native-responsive-screen';
+ import Constants from 'expo-constants';
 
 //react native navigation https://reactnavigation.org/docs/4.x/getting-started/
-import MealsNavigator from './navigation/MealsNavigator';
+import AppNavigator from './navigation/AppNavigator';
 
 const fetchFonts = () => {
   //got google fonts for the app 
@@ -28,12 +34,14 @@ export default function App() {
   };
 
   return (
-    <MealsNavigator />
+    <SafeAreaProvider>
+      <AppNavigator />
+    </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: {
+  container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
