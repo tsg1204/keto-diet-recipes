@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet , SafeAreaView, FlatList} from 'react-native';
+import { View, Text, Button, StyleSheet , SafeAreaView, FlatList, TouchableOpacity, Platform} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -8,27 +8,50 @@ import Constants from 'expo-constants';
 
 import { CATEGORIES } from '../data/dummy-data';
 //https://reactnative.dev/docs/flatlist
+//https://reactnative.dev/docs/platform-specific-code
 
-function Item({ title }) {
-  return (
-    <View style={styles.gridItem}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
+const Colors = {
+  primaryColor: '#8bc34a',
+  secondaryColor: '#795548' 
 }
 
 const CategoriesPage = props => {
+  const renderGridItem = itemData => {
+    return (
+      <TouchableOpacity
+        style={styles.gridItem}
+        onPress={() => {
+          props.navigation.navigate({ routeName: 'CategoryMeals', params: {
+            categoryId: itemData.item.id
+          } });
+        }}
+      >
+        <View>
+          <Text>{itemData.item.title}</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  };
+
     //console.log('props from CategoriesScreen: ', props)
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
           keyExtractor={(item) => item.id}
           data={CATEGORIES}
-          renderItem={({ item }) => <Item title={item.title} />}
+          renderItem={renderGridItem}
           numColumns={2}
       />    
       </SafeAreaView>
     );
+};
+
+CategoriesPage['navigationOptions'] = {
+  headerTitle: 'Keto Recipes Categories',
+  headerStyle: {
+    backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
+  },
+  headerTintColor: Colors.secondaryColor 
 };
 
 const styles = StyleSheet.create({
@@ -46,9 +69,10 @@ const styles = StyleSheet.create({
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
+    height: hp('20%')
   },
   title: {
-    fontSize: 26,
+    fontSize: hp('2%'),
   },
 });
 
