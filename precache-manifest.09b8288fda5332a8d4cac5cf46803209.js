@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/keto-diet-recipes/apple/splash/icon_1136x640.png"
   },
   {
-    "revision": "dcc7871ea9284f9e215c",
-    "url": "/keto-diet-recipes/static/js/app.28542cf1.chunk.js"
+    "revision": "3c5e11b0d8e2eb107794",
+    "url": "/keto-diet-recipes/static/js/app.3b952bd4.chunk.js"
   },
   {
     "revision": "72c6d4225b8c8ff40299",
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "/keto-diet-recipes/serve.json"
   },
   {
-    "revision": "ba9e1ffa7a0442d2a70d",
-    "url": "/keto-diet-recipes/static/js/2.c4c1becf.chunk.js"
+    "revision": "b44924a9a52d0c19cffb",
+    "url": "/keto-diet-recipes/static/js/2.42e65644.chunk.js"
   },
   {
     "revision": "ff41747f4f3bb2f9a29c2ee494815852",
@@ -36,7 +36,7 @@ self.__precacheManifest = [
     "url": "/keto-diet-recipes/expo-service-worker.js"
   },
   {
-    "revision": "d209b05c9d050aebe2c1f2b686badd5a",
+    "revision": "587fbeba4a9201d516f1e7351d28872e",
     "url": "/keto-diet-recipes/index.html"
   },
   {
