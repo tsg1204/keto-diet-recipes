@@ -1,12 +1,16 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity, Platform, ImageBackground} from 'react-native';
+import { View, Text, Dimensions, StyleSheet, FlatList, TouchableOpacity, Platform, ImageBackground } from 'react-native';
+
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
  } from 'react-native-responsive-screen';
+
 import { CATEGORIES, Colors, MEALS } from '../data/data';
 
 const CategoryMealPage = ({ navigation }) => {
+  //may need to use for web setup
+  const currentWindow = Dimensions.get('window');
   //get category id from categories page via props.navigation
   const catId = navigation.getParam('categoryId');
   //retrive the selected category from categories list
@@ -31,7 +35,7 @@ const CategoryMealPage = ({ navigation }) => {
               </ImageBackground>
             </View>
             <View style={{ ...styles.listRow, ...styles.listDetail }}>
-              <Text>Duration: {duration} min</Text>
+              <Text style={styles.duration}>Duration: {duration} min</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -60,7 +64,7 @@ const CategoryMealPage = ({ navigation }) => {
         data={meals}
         keyExtractor={(item) => item.id}
         renderItem={renderListItem}
-        style={{ width: '100%' }}
+        style={{ width: wp('100%') }}
       />
     </View>
   );
@@ -84,31 +88,31 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 15
+    padding: 15,
   },
   listItem: {
-    // height: hp('100%'),
-    // width: wp('100%'),
     backgroundColor: '#f5f5f5',
     borderRadius: 10,
     overflow: 'hidden',
-    marginVertical: 10
+    marginVertical: 10,
+    marginHorizontal: Platform.OS === 'ios' ? 30 : 100,
   },
   bgImage: {
-    width: wp('100%'),
-    height: hp('100%'),
+    width: Platform.OS === 'ios' ? Dimensions.get('screen').width : Dimensions.get('window').width,
+    height: Platform.OS === 'ios' ? Dimensions.get('screen').width*.5 : Dimensions.get('window').width*.2,
     justifyContent: 'flex-end',
   },
   listRow: {
     flexDirection: 'row'
   },
   listHeader: {
-    height: hp('85%'),
+    //height: hp('85%'),
   },
   listDetail: {
     paddingHorizontal: 10,
     alignItems: 'center',
-    height: hp('32%'),
+    //height: hp('5%'),
+    fontFamily: 'open-sans-bold',
   },
   titleContainer: {
     backgroundColor: 'rgba(0,0,0,0.5)',
@@ -117,9 +121,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'open-sans-bold',
-    fontSize: 20,
+    fontSize: hp('1.9%'),
     color: 'white',
     textAlign: 'center'
+  },
+  duration: {
+    fontFamily: 'open-sans',
+    fontSize: hp('1.8%'),
   }
 });
 
