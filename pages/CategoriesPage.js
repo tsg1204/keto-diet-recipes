@@ -55,15 +55,12 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
     justifyContent: 'center',
     alignItems: 'center',
-    //borderColor: 'grey',
-    //width: wp('100%'),
-    //height: hp('100%')
   },
   gridItem: {
     flex: 1,
     margin: 15,
     width: wp('40%'),
-    backgroundColor: '#ffd54f',
+    backgroundColor: '#c5e1a5',
   },
   title: {
     fontFamily: 'open-sans-bold',
