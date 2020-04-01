@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/keto-diet-recipes/static/js/app.8f381e19.chunk.js",
-    "app.js.map": "/keto-diet-recipes/static/js/app.8f381e19.chunk.js.map",
+    "app.js": "/keto-diet-recipes/static/js/app.314f1daa.chunk.js",
+    "app.js.map": "/keto-diet-recipes/static/js/app.314f1daa.chunk.js.map",
     "runtime~app.js": "/keto-diet-recipes/static/js/runtime~app.749d9242.js",
     "runtime~app.js.map": "/keto-diet-recipes/static/js/runtime~app.749d9242.js.map",
-    "static/js/2.dbf194e6.chunk.js": "/keto-diet-recipes/static/js/2.dbf194e6.chunk.js",
-    "static/js/2.dbf194e6.chunk.js.map": "/keto-diet-recipes/static/js/2.dbf194e6.chunk.js.map",
+    "static/js/2.d31e7cab.chunk.js": "/keto-diet-recipes/static/js/2.d31e7cab.chunk.js",
+    "static/js/2.d31e7cab.chunk.js.map": "/keto-diet-recipes/static/js/2.d31e7cab.chunk.js.map",
     "fonts/AntDesign.ttf": "/keto-diet-recipes/./fonts/AntDesign.ttf",
     "fonts/Entypo.ttf": "/keto-diet-recipes/./fonts/Entypo.ttf",
     "fonts/Feather.ttf": "/keto-diet-recipes/./fonts/Feather.ttf",
@@ -37,12 +37,12 @@
     "favicon.ico": "/keto-diet-recipes/favicon.ico",
     "index.html": "/keto-diet-recipes/index.html",
     "manifest.json": "/keto-diet-recipes/manifest.json",
-    "precache-manifest.3665874bc314438b85c5810369f135a2.js": "/keto-diet-recipes/precache-manifest.3665874bc314438b85c5810369f135a2.js",
+    "precache-manifest.28b44e7927c69e6f14649563fe93accc.js": "/keto-diet-recipes/precache-manifest.28b44e7927c69e6f14649563fe93accc.js",
     "serve.json": "/keto-diet-recipes/serve.json"
   },
   "entrypoints": [
     "static/js/runtime~app.749d9242.js",
-    "static/js/2.dbf194e6.chunk.js",
-    "static/js/app.8f381e19.chunk.js"
+    "static/js/2.d31e7cab.chunk.js",
+    "static/js/app.314f1daa.chunk.js"
   ]
 }
