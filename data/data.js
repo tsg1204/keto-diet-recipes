@@ -7,7 +7,10 @@ export const CATEGORIES = [
   {id: '1', title: '15 minute meals'},
   {id: '2', title: 'Low carb'},
   {id: '3', title: 'Quick & Easy'},
-  {id: '4', title:'Refined sugar'}
+  {id: '4', title:'Refined sugar'},
+  {id: '5', title: 'Slow Cooker'},
+  {id: '6', title: 'Vegetarian'},
+  {id: '7', title: 'Vegan'}
 ];
 
 export const MEALS = [
@@ -31,7 +34,8 @@ export const MEALS = [
       'Cook pasta following packet directions until tender, adding peas for the last 2 minutes of cooking time. Drain.',
       'Meanwhile, heat olive oil in a large, deep frying pan over medium-high heat. Add bacon and garlic. Cook for 4 minutes or until golden. Add chilli. Cook for 1 minute or until softened.',
       'Add pasta, crumbled fetta, reserved marinating oil and mint to bacon mixture. Season with salt and pepper. Toss to combine. Serve.'
-    ]
+    ],
+    favorite: false
   },
   {
     id: '2',
@@ -56,7 +60,8 @@ export const MEALS = [
       'To make the beetroot relish, combine beetroot with 1 tbs olive oil. Season.ook pasta following packet directions until tender, adding peas for the last 2 minutes of cooking time. Drain.',
       'Combine the beef with the garlic, lemon zest and herbs, then season. Use your hands to shape mixture into four 9cm patties. Heat remaining 1 tbs oil in a frypan over medium heat and cook for 3 minutes each side or until cooked to your liking.Meanwhile, heat olive oil in a large, deep frying pan over medium-high heat. Add bacon and garlic. Cook for 4 minutes or until golden. Add chilli. Cook for 1 minute or until softened.',
       'Layer the muffin bases with rocket, tomato, beetroot relish, patties and eggs, then season and top with muffin lids.Add pasta, crumbled fetta, reserved marinating oil and mint to bacon mixture. Season with salt and pepper. Toss to combine. Serve.'
-    ]
+    ],
+    favorite: false
   },
   {
     id: '3',
@@ -81,7 +86,8 @@ export const MEALS = [
       'Preheat oven to 130°C/110°C fan-forced. Place half the lemon slices over the base of an 8 cup-capacity ovenproof dish. Top with half the basil, half the garlic, half the peppercorns and half the capers. Place fish in dish. Top with remaining basil, garlic, peppercorns and capers. Pour oil over fish (oil should just cover fish).',
       'Bake fish for 40 to 45 minutes for medium or until cooked to your liking.',
       'Using a slotted spoon, transfer fish to a plate. Flake. Serve with lemon slices and spinach mixture.'
-    ]
+    ],
+    favorite: false
   },
   {
     id: '4',
@@ -102,7 +108,8 @@ export const MEALS = [
       'Heat 2 teaspoons oil in a large frying pan over medium-high heat. Cook haloumi, in batches, for 2 minutes each side or until golden. Transfer to a plate.',
       'Heat remaining oil in pan. Add chilli and capers. Cook, stirring, for 3 to 5 minutes or until capers are heated through and chilli is golden. Add rind. Cook, stirring, for 1 minute. Stir in juice. Bring to a simmer.',
       'Arrange haloumi and lettuce on a serving plate. Drizzle with hot lemon mixture. Season with pepper. Serve immediately.'
-    ]
+    ],
+    favorite: false
   },
   {
     id: '5',
@@ -123,7 +130,8 @@ export const MEALS = [
       'Use kitchen scissors to cut the mango into small (about 1.5cm) pieces. Place in a heatproof bowl and pour 125 ml (½ cup) of boiling water. Set aside for 10-15 minutes, stirring occasionally, or until mango has softened and water absorbed.',
       'Place the shredded coconut in a frying pan and stir over medium heat for about 3 minutes or until golden. Transfer to a plate to cool.',
       'Process the oats a food processor until well chopped. Add the cashews, desiccated coconut, lime zest, vanilla, a pinch of salt and mango (with any water that may not have absorbed). Process until well combined.'
-    ]
+    ],
+    favorite: false
   },
   {
     id: '6',
@@ -148,6 +156,7 @@ export const MEALS = [
       'Place the banana, flour, nut meal, cinnamon, eggs, kefir and 2 tsp oil in a blender or a food processor. Blend or process until smooth and well combined. Add the baking powder and process for a further 5-10 seconds, until just combined.',
       'Heat a non-stick frying pan over medium-high heat. Add 1 tsp of the remaining oil. Pour 1/4-cupful of batter into the pan and gently swirl to create a pancake about 12cm in diameter. Cook for 1-2 minutes, until bubbles begin to form on the surface and the pancake is golden underneath. Carefully flip and cook for a further 1-2 minutes, until golden on both sides and cooked through. Transfer to a plate and cover loosely with foil to keep warm. Repeat with the remaining mixture (and remaining 1 tsp oil, if needed) until all the batter has been used.',
       'Divide the pancakes among serving plates. Top each stack with 11 ⁄2 tbs ricotta, if you like. Scatter with the mixed berries and serve with a light drizzle of maple syrup.'
-    ]
+    ],
+    favorite: false
   }
 ];

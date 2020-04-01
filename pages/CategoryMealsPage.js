@@ -11,9 +11,9 @@ import { CATEGORIES, Colors, MEALS } from '../data/data';
 const CategoryMealPage = ({ navigation }) => {
   //may need to use for web setup
   const currentWindow = Dimensions.get('window');
-  //get category id from categories page via props.navigation
+  //get category id from categories page 
   const catId = navigation.getParam('categoryId');
-  //retrive the selected category from categories list
+  //retrive recipes of selected category 
   const meals = MEALS.filter( meal => meal.category.indexOf(catId) >= 0);
 
   function ListItem(props) {

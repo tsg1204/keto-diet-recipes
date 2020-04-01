@@ -21,8 +21,8 @@ const CategoriesPage = ({ navigation })=> {
           });
         }}
       >
-        <View style={styles.title}>
-          <Text>{itemData.item.title}</Text>
+        <View >
+          <Text style={styles.title}>{itemData.item.title}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -64,11 +64,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'open-sans-bold',
-    fontSize: hp('2%'),
+    fontSize: hp('1.8%'),
     height: hp('5%'),
     color: Colors.secondaryColor,
     textAlign: 'center',
-    paddingLeft: 30,
+    //padding: 20,
+    paddingTop: 15,
     justifyContent: 'space-evenly',    
   }
 });

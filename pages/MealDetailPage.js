@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, ScrollView, StyleSheet, Platform, Image, Dimensions, ImageBackground } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import {
@@ -9,6 +9,7 @@ import {
 import { Colors, MEALS } from '../data/data';
 import HeaderButton from '../components/HeaderButton';
 
+
 const ListItem = props => {
   return (
     <View style={styles.listItem}>
@@ -18,9 +19,40 @@ const ListItem = props => {
 };
 
 const MealDetailPage = ({ navigation }) => {
-  const itemId = navigation.getParam('itemId');
+  const [ favRecipes, setFavRecipes ] = useState([]);
+  console.log('favRecipe from MealDetailPage: ', favRecipes)
 
+  const itemId = navigation.getParam('itemId');
   const selectedItem = MEALS.find(meal => meal.id === itemId);
+
+  //check if the recipe in the favorite list
+  let currentFavorite = favRecipes.some(recipe => recipe.id === itemId);
+
+  function updateFavorite() {
+    console.log('favRecipe from updateFavorite: ', favRecipes)
+    const existingIndex = favRecipes.findIndex(recipe => {
+      console.log('recipe from findIndex function: ', recipe)
+      recipe.id === itemId});
+    console.log('existing index: ', existingIndex)
+    //console.log('favRecipe after update: ', favRecipes)
+    if (existingIndex >= 0 ) {
+        let updatedFav = [...favRecipes];
+        updatedFav.splice(existingIndex, 1);
+        console.log('existing index from after splice of the array: ', existingIndex)
+        currentFavorite = false;
+        navigation.setParams({ isFavorite: currentFavorite})
+        console.log('currentFavorite from update function: ', currentFavorite)
+      return setFavRecipes([ ...favRecipes, updatedFav])
+    } else {
+        currentFavorite = true;
+        navigation.setParams({ isFavorite: currentFavorite})
+      return setFavRecipes([...favRecipes, favRecipes.concat(selectedItem)]);
+    }
+  }
+
+  useEffect(() => {
+    navigation.setParams({ toggleFav: updateFavorite})
+  }, [])
 
   return (
     <ScrollView>
@@ -46,8 +78,13 @@ const MealDetailPage = ({ navigation }) => {
 
 MealDetailPage['navigationOptions'] = (navigationData) => {
   const itemId = navigationData.navigation.getParam('itemId');
-
   const selectedItem = MEALS.find(meal => meal.id === itemId);
+
+  const toggleFav = navigationData.navigation.getParam('toggleFav');
+  console.log('toggleFav: ', toggleFav)
+
+  const isFavorite = navigationData.navigation.getParam('isFavorite');
+  console.log('isFavorite: ', isFavorite)
 
   return {
     headerTitle: ` ${selectedItem.title}`,
@@ -59,10 +96,8 @@ MealDetailPage['navigationOptions'] = (navigationData) => {
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Favorite"
-          iconName="ios-heart-empty"
-          onPress={() => {
-            console.log('Mark as favorite!');
-          }}
+          iconName={isFavorite ? "ios-heart" : "ios-heart-empty"}
+          onPress={toggleFav}
         />
       </HeaderButtons>
     )
@@ -87,7 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 5,
     marginLeft: 20,
-    textAlign: 'left',
+    //textAlign: 'left',
   },
   title: {
     fontFamily: 'open-sans-bold',
