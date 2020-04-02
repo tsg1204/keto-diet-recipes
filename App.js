@@ -9,7 +9,8 @@ import {
  } from 'react-native-responsive-screen';
  import Constants from 'expo-constants';
  import { Provider } from "react-redux";
- import { createStore, applyMiddleware, combineReducers } from "redux"
+ import { createStore, applyMiddleware, combineReducers } from "redux";
+ import ReduxThunk from 'redux-thunk';
  import promise from "redux-promise";
 
 //react native navigation https://reactnavigation.org/docs/4.x/getting-started/
@@ -20,7 +21,7 @@ const rootReducer = combineReducers({
   recipes: recipesReducer
 })
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const fetchFonts = () => {
   return Font.loadAsync({
