@@ -1,18 +1,11 @@
 import React, { useState } from 'react';
-import { Text, View , StyleSheet} from 'react-native';
 import * as Font from 'expo-font';
 import { AppLoading } from 'expo';
-import { SafeAreaProvider , initialWindowSafeAreaInsets } from 'react-native-safe-area-context';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
- } from 'react-native-responsive-screen';
- import Constants from 'expo-constants';
+import { SafeAreaProvider  } from 'react-native-safe-area-context';
  import { Provider } from "react-redux";
- import { createStore, applyMiddleware, combineReducers } from "redux";
+ import { createStore, applyMiddleware, combineReducers } from 'redux';
  import ReduxThunk from 'redux-thunk';
- import promise from "redux-promise";
-
+ 
 //react native navigation https://reactnavigation.org/docs/4.x/getting-started/
 import AppNavigator from './navigation/AppNavigator';
 import recipesReducer from './store/reducers/recipesReducer';

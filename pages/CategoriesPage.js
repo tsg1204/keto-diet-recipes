@@ -1,5 +1,6 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet , SafeAreaView, FlatList, TouchableOpacity, Platform} from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet , SafeAreaView, FlatList, TouchableOpacity, Platform} from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -7,10 +8,19 @@ import {
 import Constants from 'expo-constants';
 
 import { CATEGORIES, Colors } from '../data/data';
+import { fetchCategories } from '../store/actions/recipes';
 //https://reactnative.dev/docs/flatlist
 //https://reactnative.dev/docs/platform-specific-code
 
 const CategoriesPage = ({ navigation })=> {
+  const catList = useSelector(state => state.recipes.categories);
+  console.log('catList from CategoriesPage:', catList)
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
   const renderGridItem = itemData => {
     return (
       <TouchableOpacity
@@ -33,7 +43,7 @@ const CategoriesPage = ({ navigation })=> {
       <SafeAreaView style={styles.container}>
         <FlatList
           keyExtractor={(item) => item.id}
-          data={CATEGORIES}
+          data={catList}
           renderItem={renderGridItem}
           //numColumns={2}
       />    
