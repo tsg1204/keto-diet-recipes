@@ -23,7 +23,7 @@ const tabScreenConfig = {
     navigationOptions: {
       tabBarIcon: tabInfo => {
         return (
-          <Ionicons name="ios-home" size={25} color={tabInfo.tintColor} />
+          <Ionicons name="ios-home" size={25} color={Colors.secondaryColor} />
         );
       },
       tabBarColor: Colors.primaryColor
@@ -33,7 +33,7 @@ const tabScreenConfig = {
     screen: FavoritesPage,
     navigationOptions: {
       tabBarIcon: tabInfo => {
-        return <Ionicons name="ios-heart" size={25} color={tabInfo.tintColor} />;
+        return <Ionicons name="ios-heart" size={25} color={Colors.secondaryColor} />;
       },
       tabBarColor: Colors.secondaryColor
     }
