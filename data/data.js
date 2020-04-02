@@ -160,3 +160,8 @@ export const MEALS = [
     favorite: false
   }
 ];
+
+export const RECIPES = {
+  available: MEALS,
+  favorites: []
+}

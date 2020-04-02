@@ -1,7 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const FavoritesPage = props => {
+  const availabelRecipes = useSelector( state => state.recipes.favoriteRecipes);
+
   return (
     <View style={styles.container}>
       <Text>The Favorites Page!</Text>

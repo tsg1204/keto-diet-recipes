@@ -3,17 +3,17 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
 import CategoriesPage from '../pages/CategoriesPage';
-import CategoryMealsPage from '../pages/CategoryMealsPage';
-import MealDetailPage from '../pages/MealDetailPage';
+import CategoryRecipePage from '../pages/CategoryRecipePage';
+import RecipeDetailPage from '../pages/RecipeDetailPage';
 import FavoritePage from '../pages/FavoritePage';
 
 const AppNavigator = createStackNavigator({
   Categories: CategoriesPage,
-  CategoryMeals: {
-    screen: CategoryMealsPage
+  CategoryRecipes: {
+    screen: CategoryRecipePage
   },
-  MealDetails: MealDetailPage,
-  FavoriteMeal: FavoritePage
+  RecipeDetails: RecipeDetailPage,
+  FavoriteRecipes: FavoritePage
 });
 
 export default createAppContainer(AppNavigator);

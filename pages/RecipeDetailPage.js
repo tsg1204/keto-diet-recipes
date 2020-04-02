@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, StyleSheet, Platform, Image, Dimensions, ImageBackground } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, ScrollView, StyleSheet, Platform, Dimensions, ImageBackground } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
  } from 'react-native-responsive-screen';
-
-import { Colors, MEALS } from '../data/data';
+//https://github.com/facebookincubator/redux-react-hook
+//https://reactjs.org/docs/hooks-reference.html
+//https://react-redux.js.org/api/hooks
+import { Colors } from '../data/data';
 import HeaderButton from '../components/HeaderButton';
-
+import { toggleFavorite } from '../store/actions/recipes';
 
 const ListItem = props => {
   return (
@@ -18,41 +21,29 @@ const ListItem = props => {
   );
 };
 
-const MealDetailPage = ({ navigation }) => {
-  const [ favRecipes, setFavRecipes ] = useState([]);
-  console.log('favRecipe from MealDetailPage: ', favRecipes)
-
+const RecipeDetailPage = ({navigation}) => {
+  //get recipes from the state using useSelector hook
+  const availabelRecipes = useSelector( state => state.recipes.recipes)
   const itemId = navigation.getParam('itemId');
-  const selectedItem = MEALS.find(meal => meal.id === itemId);
+  //get/check favorites in the state with useSelector
+  const currentRecipeIsFavorite = useSelector(state =>
+    state.recipes.favoriteRecipes.some(recipe => recipe.id === itemId)
+  );
+  const selectedItem = availabelRecipes.find(recipe => recipe.id === itemId);
 
-  //check if the recipe in the favorite list
-  let currentFavorite = favRecipes.some(recipe => recipe.id === itemId);
+  const dispatch = useDispatch();
 
-  function updateFavorite() {
-    console.log('favRecipe from updateFavorite: ', favRecipes)
-    const existingIndex = favRecipes.findIndex(recipe => {
-      console.log('recipe from findIndex function: ', recipe)
-      recipe.id === itemId});
-    console.log('existing index: ', existingIndex)
-    //console.log('favRecipe after update: ', favRecipes)
-    if (existingIndex >= 0 ) {
-        let updatedFav = [...favRecipes];
-        updatedFav.splice(existingIndex, 1);
-        console.log('existing index from after splice of the array: ', existingIndex)
-        currentFavorite = false;
-        navigation.setParams({ isFavorite: currentFavorite})
-        console.log('currentFavorite from update function: ', currentFavorite)
-      return setFavRecipes([ ...favRecipes, updatedFav])
-    } else {
-        currentFavorite = true;
-        navigation.setParams({ isFavorite: currentFavorite})
-      return setFavRecipes([...favRecipes, favRecipes.concat(selectedItem)]);
-    }
-  }
+  const toggleFavoriteHandler = useCallback(() => {
+    dispatch(toggleFavorite(itemId));
+  }, [dispatch, itemId]);
 
   useEffect(() => {
-    navigation.setParams({ toggleFav: updateFavorite})
-  }, [])
+    navigation.setParams({ toggleFav: toggleFavoriteHandler });
+  }, [toggleFavoriteHandler]);
+
+  useEffect(() => {
+    navigation.setParams({ isFavorite: currentRecipeIsFavorite });
+  }, [currentRecipeIsFavorite]);
 
   return (
     <ScrollView>
@@ -76,23 +67,22 @@ const MealDetailPage = ({ navigation }) => {
   );
 };
 
-MealDetailPage['navigationOptions'] = (navigationData) => {
-  const itemId = navigationData.navigation.getParam('itemId');
-  const selectedItem = MEALS.find(meal => meal.id === itemId);
-
+RecipeDetailPage['navigationOptions'] = (navigationData) => {
+  //recipeTitle came from CategoryRecipePage
+  const recipeTitle = navigationData.navigation.getParam('recipeTitle')
   const toggleFav = navigationData.navigation.getParam('toggleFav');
-  console.log('toggleFav: ', toggleFav)
+  //console.log('toggleFav: ', toggleFav)
 
   const isFavorite = navigationData.navigation.getParam('isFavorite');
-  console.log('isFavorite: ', isFavorite)
+  //console.log('isFavorite: ', isFavorite)
 
   return {
-    headerTitle: ` ${selectedItem.title}`,
+    headerTitle: ` ${recipeTitle}`,
     headerStyle: {
       backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
     },
     headerTintColor: Colors.secondaryColor,
-    headerRight: (
+    headerRight: () =>
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Favorite"
@@ -100,7 +90,6 @@ MealDetailPage['navigationOptions'] = (navigationData) => {
           onPress={toggleFav}
         />
       </HeaderButtons>
-    )
   };
 };
 
@@ -137,4 +126,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default MealDetailPage;
+export default RecipeDetailPage;

@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Dimensions, StyleSheet, FlatList, TouchableOpacity, Platform, ImageBackground } from 'react-native';
-
+import { useSelector } from 'react-redux';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
  } from 'react-native-responsive-screen';
 
-import { CATEGORIES, Colors, MEALS } from '../data/data';
+import { CATEGORIES, Colors } from '../data/data';
 
-const CategoryMealPage = ({ navigation }) => {
+const CategoryRecipePage = ({ navigation }) => {
   //may need to use for web setup
   const currentWindow = Dimensions.get('window');
   //get category id from categories page 
   const catId = navigation.getParam('categoryId');
+
+  const availabelRecipes = useSelector( state => state.recipes.recipes)
   //retrive recipes of selected category 
-  const meals = MEALS.filter( meal => meal.category.indexOf(catId) >= 0);
+  const recipes = availabelRecipes.filter( recipe => recipe.category.indexOf(catId) >= 0);
 
   function ListItem(props) {
     const { id, image, title, duration } = props;
@@ -22,8 +24,9 @@ const CategoryMealPage = ({ navigation }) => {
       <View style={styles.listItem}>
         <TouchableOpacity 
           onPress={() => {
-            navigation.navigate('MealDetails', {
-                itemId: id
+            navigation.navigate('RecipeDetails', {
+                itemId: id,
+                recipeTitle: title
             });
           }}          
         >
@@ -63,7 +66,7 @@ const CategoryMealPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={meals}
+        data={recipes}
         keyExtractor={(item) => item.id}
         renderItem={renderListItem}
         style={{ width: wp('100%') }}
@@ -72,7 +75,7 @@ const CategoryMealPage = ({ navigation }) => {
   );
 };
 
-CategoryMealPage['navigationOptions'] = (navigationData) => {
+CategoryRecipePage['navigationOptions'] = (navigationData) => {
   const catId = navigationData.navigation.getParam('categoryId');
   const selectedCat = CATEGORIES.find( cat => cat.id === catId);
 
@@ -134,4 +137,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CategoryMealPage;
+export default CategoryRecipePage;

@@ -16,7 +16,7 @@ const CategoriesPage = ({ navigation })=> {
       <TouchableOpacity
         style={styles.gridItem}
         onPress={() => {
-          navigation.navigate('CategoryMeals', {
+          navigation.navigate('CategoryRecipes', {
             categoryId: itemData.item.id
           });
         }}

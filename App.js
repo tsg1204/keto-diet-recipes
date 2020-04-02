@@ -8,12 +8,21 @@ import {
   widthPercentageToDP as wp,
  } from 'react-native-responsive-screen';
  import Constants from 'expo-constants';
+ import { Provider } from "react-redux";
+ import { createStore, applyMiddleware, combineReducers } from "redux"
+ import promise from "redux-promise";
 
 //react native navigation https://reactnavigation.org/docs/4.x/getting-started/
 import AppNavigator from './navigation/AppNavigator';
+import recipesReducer from './store/reducers/recipesReducer';
+
+const rootReducer = combineReducers({
+  recipes: recipesReducer
+})
+
+const store = createStore(rootReducer);
 
 const fetchFonts = () => {
-  //got google fonts for the app 
   return Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
@@ -34,16 +43,12 @@ export default function App() {
   };
 
   return (
-    <SafeAreaProvider>
-      <AppNavigator />
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <AppNavigator />
+      </SafeAreaProvider>
+    </Provider>
+
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
