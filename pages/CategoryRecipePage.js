@@ -27,7 +27,7 @@ const CategoryRecipePage = ({ navigation }) => {
   //console.log('recipes from available: ', recipes)
 
   function ListItem(props) {
-    const { id, image, title, duration } = props;
+    const { id, image, title, duration, testId } = props;
     return (
       <View style={styles.listItem} >
         <TouchableOpacity 
@@ -35,7 +35,8 @@ const CategoryRecipePage = ({ navigation }) => {
             navigation.navigate('RecipeDetails', {
                 itemId: id,
                 recipeTitle: title,
-                catId: catId
+                catId: catId,
+                testId: testId
             });
           }}          
         >
@@ -66,6 +67,7 @@ const CategoryRecipePage = ({ navigation }) => {
       <ListItem
         key={itemData.item._id}
         id={itemData.item._id}
+        testId={itemData.item.id}
         title={itemData.item.title}
         image={itemData.item.imageUrl}
         duration={itemData.item.duration}

@@ -1,13 +1,12 @@
 
 import { MEALS } from '../../data/data';
-import { TOGGLE_FAVORITE, FETCH_CATEGORIES, FETCH_RECIPES, FETCH_RECIPE_DETAILS } from '../actions/recipes';
+import { TOGGLE_FAVORITE, FETCH_CATEGORIES, FETCH_RECIPES } from '../actions/recipes';
 
 const DEFAULT_STATE = {
     categories: [],
     recipes: [],
     favoriteRecipes:[],
-    testRecipes: MEALS,
-    recipe: {}
+    testRecipes: MEALS
 }
 //https://banana-cupcake-51087.herokuapp.com/
 
@@ -17,11 +16,6 @@ export default function(state = DEFAULT_STATE, action) {
           return { ...state, categories: action.payload };
         case FETCH_RECIPES:
             return { ...state, recipes: action.payload };
-        case FETCH_RECIPE_DETAILS:
-          // return Object.assign({}, state, {
-          //   recipe: action.payload
-          //   })
-          return { ...state, recipe: action.payload };
         case TOGGLE_FAVORITE:
           const existingIndex = state.favoriteRecipes.findIndex(
             recipe => recipe.id === action.recipeId
@@ -31,7 +25,7 @@ export default function(state = DEFAULT_STATE, action) {
             updatedFavRecipes.splice(existingIndex, 1);
             return { ...state, favoriteRecipes: updatedFavRecipes };
           } else {
-            const recipe = state.recipes.find(recipe => recipe.id === action.recipeId);
+            const recipe = state.testRecipes.find(recipe => recipe.id === action.recipeId);
             return { ...state, favoriteRecipes: state.favoriteRecipes.concat(recipe) };
           }
         default:

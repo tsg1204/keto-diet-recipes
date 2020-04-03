@@ -39,7 +39,7 @@ export const fetchRecipes = (catId) => dispatch => {
 export const fetchRecipeDetails = (catId, recId) => dispatch => {
     axios.get(`${ROOT_URL}categories/${catId}/recipes/${recId}`
     ).then(function (response) {
-      console.log("response from fetchRecipeDetails", response.data)
+      //console.log("response from fetchRecipeDetails", response.data)
       dispatch({ type: FETCH_RECIPE_DETAILS, payload: response.data
      });
     })

@@ -9,9 +9,11 @@ import { SafeAreaProvider  } from 'react-native-safe-area-context';
 //react native navigation https://reactnavigation.org/docs/4.x/getting-started/
 import AppNavigator from './navigation/AppNavigator';
 import recipesReducer from './store/reducers/recipesReducer';
+import singleRecipeReducer from './store/reducers/singleRecipeReducer';
 
 const rootReducer = combineReducers({
-  recipes: recipesReducer
+  recipes: recipesReducer,
+  recipe: singleRecipeReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
