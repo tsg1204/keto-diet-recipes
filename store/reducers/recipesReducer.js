@@ -1,19 +1,27 @@
 
 import { MEALS } from '../../data/data';
-import { TOGGLE_FAVORITE, FETCH_CATEGORIES } from '../actions/recipes';
+import { TOGGLE_FAVORITE, FETCH_CATEGORIES, FETCH_RECIPES, FETCH_RECIPE_DETAILS } from '../actions/recipes';
 
 const DEFAULT_STATE = {
     categories: [],
-    recipes: MEALS,
-    favoriteRecipes:[]
+    recipes: [],
+    favoriteRecipes:[],
+    testRecipes: MEALS,
+    recipe: {}
 }
 //https://banana-cupcake-51087.herokuapp.com/
 
 export default function(state = DEFAULT_STATE, action) {
     switch (action.type) {
         case FETCH_CATEGORIES:
-          console.log('from reducer payload: ', action.payload)
           return { ...state, categories: action.payload };
+        case FETCH_RECIPES:
+            return { ...state, recipes: action.payload };
+        case FETCH_RECIPE_DETAILS:
+          // return Object.assign({}, state, {
+          //   recipe: action.payload
+          //   })
+          return { ...state, recipe: action.payload };
         case TOGGLE_FAVORITE:
           const existingIndex = state.favoriteRecipes.findIndex(
             recipe => recipe.id === action.recipeId

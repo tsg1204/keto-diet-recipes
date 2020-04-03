@@ -23,15 +23,24 @@ const ListItem = props => {
 
 const RecipeDetailPage = ({navigation}) => {
   //get recipes from the state using useSelector hook
-  const availabelRecipes = useSelector( state => state.recipes.recipes)
+  //const availabelRecipes = useSelector(state => state.recipes.recipes);
+  const catId = navigation.getParam('catId');
   const itemId = navigation.getParam('itemId');
-  //get/check favorites in the state with useSelector
+  //console.log('itemId from RecipeDetailPage: ', itemId)
+  //get/check favorites in the state 
   const currentRecipeIsFavorite = useSelector(state =>
     state.recipes.favoriteRecipes.some(recipe => recipe.id === itemId)
   );
-  const selectedItem = availabelRecipes.find(recipe => recipe.id === itemId);
+  //const selectedItem = availabelRecipes.find(recipe => recipe.id === itemId);
+  //recipe to render
+  const selectedItem = useSelector( state => state.recipes.recipe)
+  console.log('selected recipe from Details: ', selectedItem)
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRecipeDetails(catId, itemId));
+  }, [dispatch, itemId]);
 
   const toggleFavoriteHandler = useCallback(() => {
     dispatch(toggleFavorite(itemId));
@@ -44,6 +53,7 @@ const RecipeDetailPage = ({navigation}) => {
   useEffect(() => {
     navigation.setParams({ isFavorite: currentRecipeIsFavorite });
   }, [currentRecipeIsFavorite]);
+
 
   return (
     <ScrollView>

@@ -7,19 +7,19 @@ import {
  } from 'react-native-responsive-screen';
 import Constants from 'expo-constants';
 
-import { CATEGORIES, Colors } from '../data/data';
-import { fetchCategories } from '../store/actions/recipes';
+import { Colors } from '../data/data';
+import { fetchCategories, fetchRecipes } from '../store/actions/recipes';
 //https://reactnative.dev/docs/flatlist
 //https://reactnative.dev/docs/platform-specific-code
 
 const CategoriesPage = ({ navigation })=> {
   const catList = useSelector(state => state.recipes.categories);
-  console.log('catList from CategoriesPage:', catList)
+  //console.log('catList from CategoriesPage:', catList)
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchCategories();
-  }, []);
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
   const renderGridItem = itemData => {
     return (
@@ -27,7 +27,9 @@ const CategoriesPage = ({ navigation })=> {
         style={styles.gridItem}
         onPress={() => {
           navigation.navigate('CategoryRecipes', {
-            categoryId: itemData.item.id
+            categoryId: itemData.item._id,
+            catTitle: itemData.item.title,
+            categoryRecipes: itemData.item.recipes
           });
         }}
       >
@@ -42,8 +44,8 @@ const CategoriesPage = ({ navigation })=> {
     return (
       <SafeAreaView style={styles.container}>
         <FlatList
-          keyExtractor={(item) => item.id}
-          data={catList}
+          keyExtractor={(item) => item._id}
+          data={catList.sort((a,b) => a.id-b.id)}
           renderItem={renderGridItem}
           //numColumns={2}
       />    

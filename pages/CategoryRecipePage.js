@@ -1,50 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect }  from 'react';
 import { View, Text, Dimensions, StyleSheet, FlatList, TouchableOpacity, Platform, ImageBackground } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
  } from 'react-native-responsive-screen';
 
-import { CATEGORIES, Colors } from '../data/data';
+import { Colors } from '../data/data';
+import { fetchRecipes } from '../store/actions/recipes';
 
 const CategoryRecipePage = ({ navigation }) => {
   //may need to use for web setup
   const currentWindow = Dimensions.get('window');
   //get category id from categories page 
   const catId = navigation.getParam('categoryId');
+  //console.log('category id from CategoryRecipePage: ', catId)
 
-  const availabelRecipes = useSelector( state => state.recipes.recipes)
+  const recipes = useSelector( state => state.recipes.recipes)
   //retrive recipes of selected category 
-  const recipes = availabelRecipes.filter( recipe => recipe.category.indexOf(catId) >= 0);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRecipes(catId));
+  }, [dispatch, catId]);
+
+  //console.log('recipes from available: ', recipes)
 
   function ListItem(props) {
     const { id, image, title, duration } = props;
     return (
-      <View style={styles.listItem}>
+      <View style={styles.listItem} >
         <TouchableOpacity 
           onPress={() => {
             navigation.navigate('RecipeDetails', {
                 itemId: id,
-                recipeTitle: title
+                recipeTitle: title,
+                catId: catId
             });
           }}          
         >
-          <View>
-            <View style={{ ...styles.listRow, ...styles.listHeader }}>
+          <View key={id}>
+            <View style={{ ...styles.listRow, ...styles.listHeader }} >
               <ImageBackground
                 source={{ uri: image }}
                 style={styles.bgImage}
               >
-                <View style={styles.titleContainer}>
-                  <Text style={styles.title} numberOfLines={1}>
+                <View style={styles.titleContainer} >
+                  <Text style={styles.title} numberOfLines={1} >
                     {title}
                   </Text>
                 </View>
               </ImageBackground>
             </View>
-            <View style={{ ...styles.listRow, ...styles.listDetail }}>
-              <Text style={styles.duration}>Duration: {duration} min</Text>
+            <View style={{ ...styles.listRow, ...styles.listDetail }} >
+              <Text style={styles.duration} >Duration: {duration} min</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -55,7 +64,8 @@ const CategoryRecipePage = ({ navigation }) => {
   const renderListItem = itemData => {
     return (
       <ListItem
-        id={itemData.item.id}
+        key={itemData.item._id}
+        id={itemData.item._id}
         title={itemData.item.title}
         image={itemData.item.imageUrl}
         duration={itemData.item.duration}
@@ -67,7 +77,7 @@ const CategoryRecipePage = ({ navigation }) => {
     <View style={styles.container}>
       <FlatList
         data={recipes}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         renderItem={renderListItem}
         style={{ width: wp('100%') }}
       />
@@ -76,11 +86,10 @@ const CategoryRecipePage = ({ navigation }) => {
 };
 
 CategoryRecipePage['navigationOptions'] = (navigationData) => {
-  const catId = navigationData.navigation.getParam('categoryId');
-  const selectedCat = CATEGORIES.find( cat => cat.id === catId);
+  const categoryTitle = navigationData.navigation.getParam('catTitle');
 
   return {
-    headerTitle: `Category: ${selectedCat.title}`,
+    headerTitle: `Category: ${categoryTitle}`,
     headerStyle: {
       backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
     },
