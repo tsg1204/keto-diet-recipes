@@ -40,12 +40,12 @@ const RecipeDetailPage = ({navigation}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('from fethRecipeDetails')
+    //console.log('from fethRecipeDetails')
     dispatch(fetchRecipeDetails(catId, itemId));   
   }, [dispatch, catId, itemId]);
 
   useEffect(() => {
-    console.log('from fetchFavoriteRecipes')
+    //console.log('from fetchFavoriteRecipes')
     dispatch(fetchFavoriteRecipes());   
   }, [dispatch]);
 

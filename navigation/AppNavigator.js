@@ -15,6 +15,7 @@ const AppNavigator = createStackNavigator({
     screen: CategoryRecipePage
   },
   RecipeDetails: RecipeDetailPage,
+  Favorites: FavoritesPage,
 });
 
 const tabScreenConfig = {
