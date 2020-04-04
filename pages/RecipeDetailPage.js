@@ -11,7 +11,7 @@ import {
 //https://react-redux.js.org/api/hooks
 import { Colors } from '../data/data';
 import HeaderButton from '../components/HeaderButton';
-import { toggleFavorite, fetchRecipeDetails, fetchFavorite, toggleFavoriteButton } from '../store/actions/recipes';
+import { toggleFavorite, fetchRecipeDetails, fetchFavoriteRecipes, toggleFavoriteButton } from '../store/actions/recipes';
 
 const ListItem = props => {
   return (
@@ -44,10 +44,10 @@ const RecipeDetailPage = ({navigation}) => {
     dispatch(fetchRecipeDetails(catId, itemId));   
   }, [dispatch, catId, itemId]);
 
-  //will be going to favorites page
-  // useEffect(() => {
-  //   dispatch(fetchFavorite(catId, itemId));   
-  // }, [dispatch, catId, itemId ]);
+  useEffect(() => {
+    console.log('from fetchFavoriteRecipes')
+    dispatch(fetchFavoriteRecipes());   
+  }, [dispatch]);
 
   const toggleFavoriteHandler = useCallback(() => {
     dispatch(
@@ -55,19 +55,13 @@ const RecipeDetailPage = ({navigation}) => {
     );   
   }, [dispatch, currentRecipeIsFavorite]);
 
-  // useEffect(() => {
-  //   console.log('from toggleFavorite currentIsFavorite: ', currentRecipeIsFavorite)
-  //   dispatch(toggleFavorite(catId, itemId, currentRecipeIsFavorite));   
-  // }, [dispatch, currentRecipeIsFavorite ]);
-
   useEffect(() => {
-    //console.log('from Set toggle handler')
     navigation.setParams({ toggleFav: toggleFavoriteHandler });
   }, [toggleFavoriteHandler]);
 
   useEffect(() => {
-    //console.log('from Set fav')
     navigation.setParams({ favorite: currentRecipeIsFavorite });
+    //update DB for current recipe, set favorite to currentRecipeIsFavorite value
     dispatch(toggleFavorite(catId, itemId, currentRecipeIsFavorite));
   }, [currentRecipeIsFavorite]);
 

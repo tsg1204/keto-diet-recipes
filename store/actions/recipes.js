@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
-export const FETCH_FAVORITE = 'FETCH_FAVORITE';
+export const FETCH_FAVORITES = 'FETCH_FAVORITES';
 export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
 export const FETCH_RECIPES = 'FETCH_RECIPES';
 export const FETCH_RECIPE_DETAILS = 'FETCH_RECIPE_DETAILS';
@@ -60,11 +60,11 @@ export const toggleFavorite = (catId, recId, favorite) => dispatch => {
   });
 }
   
-export const fetchFavorite = (catId, recId) => dispatch => {
-  axios.get(`${ROOT_URL}categories/${catId}/recipes/${recId}`
+export const fetchFavoriteRecipes = () => dispatch => {
+  axios.get(`${ROOT_URL}favorites`
   ).then(function (response) {
-    //console.log("response from fetchRecipeDetails", response.data)
-    dispatch({ type: FETCH_FAVORITE, payload: response.data
+    console.log("response from fetchFavoriteRecipes", response.data)
+    dispatch({ type: FETCH_FAVORITES, payload: response.data
    });
   })
   .catch(function (error) {

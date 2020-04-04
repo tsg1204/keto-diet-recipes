@@ -1,6 +1,6 @@
 
 import { MEALS } from '../../data/data';
-import { FETCH_FAVORITE, FETCH_CATEGORIES, FETCH_RECIPES, TOGGLE_FAVORITE } from '../actions/recipes';
+import { FETCH_FAVORITES, FETCH_CATEGORIES, FETCH_RECIPES, TOGGLE_FAVORITE } from '../actions/recipes';
 
 const DEFAULT_STATE = {
     categories: [],
@@ -27,10 +27,8 @@ export default function(state = DEFAULT_STATE, action) {
           return { ...state, categories: action.payload };
         case FETCH_RECIPES:
             return { ...state, recipes: action.payload };
-        case FETCH_FAVORITE:
-          return Object.assign({}, state, {
-            favoriteRecipe: action.payload
-          })
+        case FETCH_FAVORITES:
+          return { ...state, favoriteRecipes: action.payload };
         case TOGGLE_FAVORITE:
           const existingIndex = state.favoriteRecipes.findIndex(
             recipe => recipe.id === action.recipeId
