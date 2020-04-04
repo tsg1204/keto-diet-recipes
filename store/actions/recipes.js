@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const FETCH_FAVORITE = 'FETCH_FAVORITE';
 export const TOGGLE_FAVORITE = 'TOGGLE_FAVORITE';
 export const FETCH_RECIPES = 'FETCH_RECIPES';
 export const FETCH_RECIPE_DETAILS = 'FETCH_RECIPE_DETAILS';
@@ -8,8 +9,8 @@ export const FETCH_RECIPE_DETAILS = 'FETCH_RECIPE_DETAILS';
 
 const ROOT_URL = "https://banana-cupcake-51087.herokuapp.com/";
 
-export const toggleFavorite = (id) => {
-    return { type: TOGGLE_FAVORITE, recipeId: id}
+export const toggleFavoriteButton = (id) => {
+    return { type: TOGGLE_FAVORITE, recipeId: id }
 }
 
 export const fetchCategories = () => dispatch => {
@@ -21,8 +22,7 @@ export const fetchCategories = () => dispatch => {
     .catch(function (error) {
       console.log(error);
     });
-  };
-
+};
 
 export const fetchRecipes = (catId) => dispatch => {
     axios.get(`${ROOT_URL}categories/${catId}/recipes`
@@ -48,4 +48,26 @@ export const fetchRecipeDetails = (catId, recId) => dispatch => {
     });
 };
 
+export const toggleFavorite = (catId, recId, favorite) => dispatch => {
+  const body = {"favorite": favorite }
+  axios.put(`${ROOT_URL}categories/${catId}/recipes/${recId}/toggleFavorite`, body)
+  .then(function (response) {
+    console.log("response from toggleFavorite actions", response.data)
+    //dispatch({ type: FETCH_RECIPE_DETAILS, payload: response.data });
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
   
+export const fetchFavorite = (catId, recId) => dispatch => {
+  axios.get(`${ROOT_URL}categories/${catId}/recipes/${recId}`
+  ).then(function (response) {
+    //console.log("response from fetchRecipeDetails", response.data)
+    dispatch({ type: FETCH_FAVORITE, payload: response.data
+   });
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+};

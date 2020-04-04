@@ -2,6 +2,7 @@ import { FETCH_RECIPE_DETAILS } from '../actions/recipes';
 
 const DEFAULT_STATE = {
     recipe: {
+        id: '',
         category: [],
         title: '',
         imageUrl: '',

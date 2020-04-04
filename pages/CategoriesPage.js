@@ -28,8 +28,7 @@ const CategoriesPage = ({ navigation })=> {
         onPress={() => {
           navigation.navigate('CategoryRecipes', {
             categoryId: itemData.item._id,
-            catTitle: itemData.item.title,
-            categoryRecipes: itemData.item.recipes
+            catTitle: itemData.item.title
           });
         }}
       >

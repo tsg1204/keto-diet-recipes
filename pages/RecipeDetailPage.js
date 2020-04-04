@@ -9,9 +9,9 @@ import {
 //https://github.com/facebookincubator/redux-react-hook
 //https://reactjs.org/docs/hooks-reference.html
 //https://react-redux.js.org/api/hooks
-import { MEALS, Colors } from '../data/data';
+import { Colors } from '../data/data';
 import HeaderButton from '../components/HeaderButton';
-import { toggleFavorite, fetchRecipeDetails } from '../store/actions/recipes';
+import { toggleFavorite, fetchRecipeDetails, fetchFavorite, toggleFavoriteButton } from '../store/actions/recipes';
 
 const ListItem = props => {
   return (
@@ -22,20 +22,17 @@ const ListItem = props => {
 };
 
 const RecipeDetailPage = ({navigation}) => {
-  //get recipes from the state using useSelector hook
-  //const availabelRecipes = useSelector(state => state.recipes.testRecipes);
   const catId = navigation.getParam('catId');
   //console.log('categoryId from RecipeDetailPage: ', catId)
   const itemId = navigation.getParam('itemId');
   //console.log('itemId from RecipeDetailPage: ', itemId)
   //get/check favorites in the state 
-  //this should be changed to fetch from DB
-  const testId = navigation.getParam('testId');
+  //const currentRecipeIsFavorite = useSelector(state => state.recipes.favoriteRecipe.favorite)
+  const insideId = navigation.getParam('insideId');
   const currentRecipeIsFavorite = useSelector(state =>
-    state.recipes.favoriteRecipes.some(recipe => recipe.id === testId)
+    state.recipes.favoriteRecipes.some(recipe => recipe.id === insideId)
   );
-  //const selectedItem = MEALS.find(recipe => recipe.id === '3');
-  //console.log('selectedItem recipe from Details: ', selectedItem.imageUrl)
+  console.log('favorite status from RecipeDetailPage: ', currentRecipeIsFavorite)
   //recipe to render
   const selectedItem = useSelector( state => state.recipe.recipe)
   //console.log('selected recipe from Details from fetch actions: ', selectedItem.imageUrl)
@@ -43,21 +40,36 @@ const RecipeDetailPage = ({navigation}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchRecipeDetails(catId, itemId));
+    console.log('from fethRecipeDetails')
+    dispatch(fetchRecipeDetails(catId, itemId));   
   }, [dispatch, catId, itemId]);
 
+  //will be going to favorites page
+  // useEffect(() => {
+  //   dispatch(fetchFavorite(catId, itemId));   
+  // }, [dispatch, catId, itemId ]);
+
   const toggleFavoriteHandler = useCallback(() => {
-    dispatch(toggleFavorite(testId));
-  }, [dispatch, testId]);
+    dispatch(
+      toggleFavoriteButton(insideId)
+    );   
+  }, [dispatch, currentRecipeIsFavorite]);
+
+  // useEffect(() => {
+  //   console.log('from toggleFavorite currentIsFavorite: ', currentRecipeIsFavorite)
+  //   dispatch(toggleFavorite(catId, itemId, currentRecipeIsFavorite));   
+  // }, [dispatch, currentRecipeIsFavorite ]);
 
   useEffect(() => {
+    //console.log('from Set toggle handler')
     navigation.setParams({ toggleFav: toggleFavoriteHandler });
   }, [toggleFavoriteHandler]);
 
   useEffect(() => {
-    navigation.setParams({ isFavorite: currentRecipeIsFavorite });
+    //console.log('from Set fav')
+    navigation.setParams({ favorite: currentRecipeIsFavorite });
+    dispatch(toggleFavorite(catId, itemId, currentRecipeIsFavorite));
   }, [currentRecipeIsFavorite]);
-
 
   return (
     <ScrollView>
@@ -82,13 +94,9 @@ const RecipeDetailPage = ({navigation}) => {
 };
 
 RecipeDetailPage['navigationOptions'] = (navigationData) => {
-  //recipeTitle from CategoryRecipePage
   const recipeTitle = navigationData.navigation.getParam('recipeTitle')
   const toggleFav = navigationData.navigation.getParam('toggleFav');
-  //console.log('toggleFav: ', toggleFav)
-
-  const isFavorite = navigationData.navigation.getParam('isFavorite');
-  //console.log('isFavorite: ', isFavorite)
+  const isFavorite = navigationData.navigation.getParam('favorite');
 
   return {
     headerTitle: ` ${recipeTitle}`,
