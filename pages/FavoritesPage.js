@@ -5,7 +5,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
  } from 'react-native-responsive-screen';
- import Constants from 'expo-constants';
+ import { Ionicons } from '@expo/vector-icons';
 
 import { Colors } from '../data/data';
 import { fetchFavoriteRecipes } from '../store/actions/recipes';
@@ -17,7 +17,7 @@ const FavoritesPage = ({ navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('from fetchFavoriteRecipes')
+    //console.log('from fetchFavoriteRecipes')
     dispatch(fetchFavoriteRecipes());   
   }, [dispatch]);
 
@@ -50,7 +50,7 @@ const FavoritesPage = ({ navigation }) => {
               </ImageBackground>
             </View>
             <View style={{ ...styles.listRow, ...styles.listDetail }} >
-              <Text style={styles.duration} >Duration: {duration} min</Text>
+                <Text style={styles.duration} >Duration: {duration} min</Text>
             </View>
           </View>
         </TouchableOpacity>
@@ -72,6 +72,14 @@ const FavoritesPage = ({ navigation }) => {
       />
     );
   };
+
+  if (recipes.length === 0 ) {
+    return (
+      <View style={styles.container}>
+        <Text>No favorite recipes found.</Text>
+      </View>
+    )
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -96,7 +104,8 @@ FavoritesPage['navigationOptions'] = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: Constants.statusBarHeight,
+    marginTop: 10,
+    padding: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -114,7 +123,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   listRow: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+
   },
   listHeader: {
     //height: hp('85%'),
@@ -122,7 +132,7 @@ const styles = StyleSheet.create({
   listDetail: {
     paddingHorizontal: 10,
     alignItems: 'center',
-    //height: hp('5%'),
+    justifyContent: 'space-between',
     fontFamily: 'open-sans-bold',
   },
   titleContainer: {

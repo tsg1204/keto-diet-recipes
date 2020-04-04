@@ -32,7 +32,7 @@ const RecipeDetailPage = ({navigation}) => {
   const currentRecipeIsFavorite = useSelector(state =>
     state.recipes.favoriteRecipes.some(recipe => recipe.id === insideId)
   );
-  console.log('favorite status from RecipeDetailPage: ', currentRecipeIsFavorite)
+  //console.log('favorite status from RecipeDetailPage: ', currentRecipeIsFavorite)
   //recipe to render
   const selectedItem = useSelector( state => state.recipe.recipe)
   //console.log('selected recipe from Details from fetch actions: ', selectedItem.imageUrl)

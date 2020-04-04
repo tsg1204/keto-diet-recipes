@@ -63,7 +63,7 @@ export const toggleFavorite = (catId, recId, favorite) => dispatch => {
 export const fetchFavoriteRecipes = () => dispatch => {
   axios.get(`${ROOT_URL}favorites`
   ).then(function (response) {
-    console.log("response from fetchFavoriteRecipes", response.data)
+    //console.log("response from fetchFavoriteRecipes", response.data)
     dispatch({ type: FETCH_FAVORITES, payload: response.data
    });
   })

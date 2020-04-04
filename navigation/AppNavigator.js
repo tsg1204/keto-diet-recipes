@@ -15,8 +15,13 @@ const AppNavigator = createStackNavigator({
     screen: CategoryRecipePage
   },
   RecipeDetails: RecipeDetailPage,
-  Favorites: FavoritesPage,
 });
+
+const FavNavigator = createStackNavigator({
+  Favorites: FavoritesPage,
+  RecipeDetails: RecipeDetailPage,
+  Categories: CategoriesPage,
+})
 
 const tabScreenConfig = {
   Categories: {
@@ -31,7 +36,7 @@ const tabScreenConfig = {
     }
   },
   Favorites: {
-    screen: FavoritesPage,
+    screen: FavNavigator,
     navigationOptions: {
       tabBarIcon: tabInfo => {
         return <Ionicons name="ios-heart" size={25} color={Colors.secondaryColor} />;
