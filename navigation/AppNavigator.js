@@ -29,7 +29,7 @@ export const AppNavigator = () => {
     <AppStackNavigator.Navigator screenOptions={defaultNavOptions}>
       <AppStackNavigator.Screen
         name="Categories"
-        component={AppTabs}
+        component={CategoriesPage}
         options={categoriesPageOptions}
         path={'categories'}
       />
@@ -74,7 +74,7 @@ export const AppTabs = () => {
     >
       <Tab.Screen 
         name="Categories" 
-        component={CategoriesPage}
+        component={AppNavigator}
         options={{
           tabBarLabel: 'Categories',
           tabBarIcon: () => (
@@ -84,7 +84,7 @@ export const AppTabs = () => {
       />
       <Tab.Screen 
         name="Favorites" 
-        component={FavoritesPage} 
+        component={FavNavigator} 
         options={{
           tabBarLabel: 'Favorites',
           tabBarIcon: () => (

@@ -37,7 +37,7 @@ const FavoritesPage = props => {
           }}          
         >
           <View key={id}>
-            <View style={{ ...styles.listRow, ...styles.listHeader }} >
+            <View style={{ ...styles.listRow, ...styles.listHeader }} key={id} >
               <ImageBackground
                 source={{ uri: image }}
                 style={styles.bgImage}
