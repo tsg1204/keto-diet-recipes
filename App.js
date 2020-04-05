@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import * as Font from 'expo-font';
 import { AppLoading, Linking } from 'expo';
 import { SafeAreaProvider  } from 'react-native-safe-area-context';
- import { Provider } from "react-redux";
- import { createStore, applyMiddleware, combineReducers } from 'redux';
- import ReduxThunk from 'redux-thunk';
- import { NavigationContainer, useLinking } from '@react-navigation/native';
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import { NavigationContainer, useLinking } from '@react-navigation/native';
  
 //react native navigation https://reactnavigation.org/docs/4.x/getting-started/
 import { AppNavigator, AppTabs } from './navigation/AppNavigator';
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const prefix = Linking.makeUrl('/')
-console.log('prefix: ', prefix)
+//console.log('prefix: ', prefix)
 const config = {
   Categories: {
     path: "categories", //?

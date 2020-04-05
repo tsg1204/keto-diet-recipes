@@ -11,3 +11,11 @@ npm install
 
 To start the project:
 npm start or expo start
+
+# Images
+![ios image](assets/ios-img.png)\
+![android image](assets/android-img.png)\
+![web image](assets/web-img.png)\
+
+
+

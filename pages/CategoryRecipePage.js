@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     marginVertical: 10,
-    marginHorizontal: Platform.OS === 'ios' ? 15 : 100,
+    marginHorizontal: Platform.OS === 'ios' ? 15 : (Platform.OS === 'android' ? 15 : 100),
   },
   bgImage: {
     //have to adjust images size
