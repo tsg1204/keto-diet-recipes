@@ -14,6 +14,7 @@ npm start or expo start
 
 # Images
 iOS\
+![start app image](assets/start-page.png)
 ![ios image](assets/ios-img.png)\
 Android\
 ![android image](assets/android-img.png)\
