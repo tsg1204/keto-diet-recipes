@@ -111,12 +111,12 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     marginVertical: 10,
-    marginHorizontal: Platform.OS === 'ios' ? 5 : 50,
+    marginHorizontal: Platform.OS === 'ios' ? 5 : (Platform.OS === 'android' ? 20 : 50),
   },
   image: {
-    width: Platform.OS === 'ios' ? Dimensions.get('screen').width : Dimensions.get('window').width,
+    width: Platform.OS === 'ios' ? Dimensions.get('screen').width : Dimensions.get('window').width*.8,
     height: Platform.OS === 'ios' ? Dimensions.get('screen').width*.5 : Dimensions.get('window').width*.2,
-    justifyContent: 'flex-end',
+    //justifyContent: 'flex-end',
   },
   details: {
     flexDirection: 'row',
@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
   },
   listItem: {
     marginVertical: 5,
-    marginHorizontal: Platform.OS === 'ios' ? 40 : 200,
+    marginHorizontal: Platform.OS === 'ios' ? 40 : (Platform.OS === 'android' ? 20 : 200),
     padding: 5
   }
 });

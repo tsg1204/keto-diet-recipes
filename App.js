@@ -82,7 +82,7 @@ export default function App() {
     <Provider store={store}>
       <SafeAreaProvider>
         <NavigationContainer >
-          <AppTabs initialState={initialState} />
+          <AppTabs />
         </NavigationContainer>
       </SafeAreaProvider>
     </Provider>
