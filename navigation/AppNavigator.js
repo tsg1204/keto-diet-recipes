@@ -14,7 +14,7 @@ const defaultNavOptions = {
     backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor
   },
   headerTitleStyle: {
-    fontFamily: 'open-sans-bold'
+    fontFamily: 'open-sans'
   },
   headerBackTitleStyle: {
     fontFamily: 'open-sans'
@@ -31,6 +31,7 @@ export const AppNavigator = () => {
         name="Categories"
         component={AppTabs}
         options={categoriesPageOptions}
+        path={'categories'}
       />
       <AppStackNavigator.Screen
         name="CategoryRecipes"
@@ -41,6 +42,7 @@ export const AppNavigator = () => {
         name="RecipeDetails"
         component={RecipeDetailPage}
         options={recipeDetailsPageOptions}
+        path={'recipe-details'}
       />
     </AppStackNavigator.Navigator>
   );

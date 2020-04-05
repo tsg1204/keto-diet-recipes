@@ -24,7 +24,7 @@ const FavoritesPage = props => {
   function ListItem(items) {
     const { id, image, title, duration, favorite, insideId } = items;
     return (
-      <View style={styles.listItem} >
+      <View style={styles.listItem} key={id} >
         <TouchableOpacity 
           onPress={() => {
             props.navigation.navigate('RecipeDetails', {

@@ -92,7 +92,7 @@ export const screenOptions = navData => {
   const categoryTitle = navData.route.params.catTitle;
 
   return {
-    headerTitle: `Category: ${categoryTitle}`,
+    headerTitle: `${categoryTitle}`,
     headerStyle: {
       backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
     },

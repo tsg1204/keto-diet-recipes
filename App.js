@@ -5,7 +5,7 @@ import { SafeAreaProvider  } from 'react-native-safe-area-context';
  import { Provider } from "react-redux";
  import { createStore, applyMiddleware, combineReducers } from 'redux';
  import ReduxThunk from 'redux-thunk';
- import { NavigationContainer } from '@react-navigation/native';
+ import { NavigationContainer, useLinking } from '@react-navigation/native';
  
 //react native navigation https://reactnavigation.org/docs/4.x/getting-started/
 import { AppNavigator, AppTabs } from './navigation/AppNavigator';
@@ -18,7 +18,19 @@ const rootReducer = combineReducers({
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
-const prefix = Linking.makeUrl('/');
+
+const prefix = Linking.makeUrl('/')
+console.log('prefix: ', prefix)
+const config = {
+  Categories: {
+    path: "categories", //?
+    initialRouteName: "Categories",
+    screens: {
+      Categories: "categories",
+    }
+  },
+  RecipeDetails: "recipe-details"
+};
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -31,6 +43,32 @@ export default function App() {
   // useState to load fonts
   const [fontLoaded, setFontLoaded] = useState(false);
   //from example: have to use AppLoading component of Expo so fonts will be loaded first
+  const ref = React.useRef();
+
+  const { getInitialState } = useLinking(ref, {
+    prefixes: [prefix],
+    config
+  });
+
+  const [isReady, setIsReady] = React.useState(false);
+  const [initialState, setInitialState] = React.useState();
+
+  React.useEffect(() => {
+    getInitialState()
+      .catch(() => {})
+      .then(state => {
+        if (state !== undefined) {
+          setInitialState(state);
+        }
+
+        setIsReady(true);
+      });
+  }, [getInitialState]);
+
+  if (!isReady) {
+    return null;
+  }
+
   if (!fontLoaded) {
     return (
       <AppLoading
@@ -44,7 +82,7 @@ export default function App() {
     <Provider store={store}>
       <SafeAreaProvider>
         <NavigationContainer >
-          <AppNavigator  uriPrefix={prefix} />
+          <AppNavigator initialState={initialState} />
         </NavigationContainer>
       </SafeAreaProvider>
     </Provider>

@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
     height: hp('5%'),
     color: Colors.secondaryColor,
     textAlign: 'center',
-    //padding: 20,
     paddingTop: 15,
     justifyContent: 'space-evenly', 
 
