@@ -9,11 +9,11 @@ import {
 import { Colors } from '../data/data';
 import { fetchRecipes } from '../store/actions/recipes';
 
-const CategoryRecipePage = ({ navigation }) => {
+const CategoryRecipePage = props => {
   //may need to use for web setup
   const currentWindow = Dimensions.get('window');
   //get category id from categories page 
-  const catId = navigation.getParam('categoryId');
+  const catId = props.route.params.categoryId;
   //console.log('category id from CategoryRecipePage: ', catId)
 
   const recipes = useSelector( state => state.recipes.recipes)
@@ -22,17 +22,15 @@ const CategoryRecipePage = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(fetchRecipes(catId));
-  }, [dispatch, catId]);
+  }, [dispatch, catId])
 
-  //console.log('recipes from available: ', recipes)
-
-  function ListItem(props) {
-    const { id, image, title, duration, favorite, insideId } = props;
+  function ListItem(items) {
+    const { id, image, title, duration, favorite, insideId } = items;
     return (
       <View style={styles.listItem} >
         <TouchableOpacity 
           onPress={() => {
-            navigation.navigate('RecipeDetails', {
+            props.navigation.navigate('RecipeDetails', {
                 itemId: id,
                 recipeTitle: title,
                 catId: catId,
@@ -90,8 +88,8 @@ const CategoryRecipePage = ({ navigation }) => {
   );
 };
 
-CategoryRecipePage['navigationOptions'] = (navigationData) => {
-  const categoryTitle = navigationData.navigation.getParam('catTitle');
+export const screenOptions = navData => {
+  const categoryTitle = navData.route.params.catTitle;
 
   return {
     headerTitle: `Category: ${categoryTitle}`,

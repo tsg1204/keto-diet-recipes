@@ -12,7 +12,7 @@ import { fetchCategories } from '../store/actions/recipes';
 //https://reactnative.dev/docs/flatlist
 //https://reactnative.dev/docs/platform-specific-code
 
-const CategoriesPage = ({ navigation })=> {
+const CategoriesPage = props => {
   const catList = useSelector(state => state.recipes.categories);
   //console.log('catList from CategoriesPage:', catList)
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const CategoriesPage = ({ navigation })=> {
       <TouchableOpacity
         style={styles.gridItem}
         onPress={() => {
-          navigation.navigate('CategoryRecipes', {
+          props.navigation.navigate('CategoryRecipes', {
             categoryId: itemData.item._id,
             catTitle: itemData.item.title
           });
@@ -39,26 +39,27 @@ const CategoriesPage = ({ navigation })=> {
     );
   };
 
-    //console.log('props from CategoriesScreen: ', props)
-    return (
-      <SafeAreaView style={styles.container}>
-        <FlatList
-          keyExtractor={(item) => item._id}
-          data={catList.sort((a,b) => a.id-b.id)}
-          renderItem={renderGridItem}
-          //numColumns={2}
-      />    
-      </SafeAreaView>
-    );
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        keyExtractor={(item) => item._id}
+        data={catList.sort((a,b) => a.id-b.id)}
+        renderItem={renderGridItem}
+        //numColumns={2}
+    />    
+    </SafeAreaView>
+  );
 };
 
-CategoriesPage['navigationOptions'] = {
-  title: 'Keto Recipes Categories',
-  headerStyle: {
-    backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
-  },
-  headerTintColor: Colors.secondaryColor 
-};
+export const screenOptions = () =>  {
+  return {
+    headerTitle: 'Keto Recipes Categories',
+    headerStyle: {
+      backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
+    },
+    headerTintColor: Colors.secondaryColor 
+  }
+}
 
 const styles = StyleSheet.create({
   container: {

@@ -1,56 +1,95 @@
 import React from 'react';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
-import CategoriesPage from '../pages/CategoriesPage';
-import CategoryRecipePage from '../pages/CategoryRecipePage';
-import RecipeDetailPage from '../pages/RecipeDetailPage';
-import FavoritesPage from '../pages/FavoritesPage';
-import { Colors } from '../data/data';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import CategoriesPage, {screenOptions as categoriesPageOptions}  from '../pages/CategoriesPage';
+import CategoryRecipePage, {screenOptions as categoryRecipePageOptions}  from '../pages/CategoryRecipePage';
+import RecipeDetailPage, {screenOptions as recipeDetailsPageOptions}  from '../pages/RecipeDetailPage';
+import FavoritesPage, {screenOptions as favoritesPageOptions}  from '../pages/FavoritesPage';
+import { Colors } from '../data/data';
 
-const AppNavigator = createStackNavigator({
-  Categories: CategoriesPage,
-  CategoryRecipes: {
-    screen: CategoryRecipePage
+const defaultNavOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor
   },
-  RecipeDetails: RecipeDetailPage,
-});
-
-const FavNavigator = createStackNavigator({
-  Favorites: FavoritesPage,
-  RecipeDetails: RecipeDetailPage,
-  Categories: CategoriesPage,
-})
-
-const tabScreenConfig = {
-  Categories: {
-    screen: AppNavigator,
-    navigationOptions: {
-      tabBarIcon: tabInfo => {
-        return (
-          <Ionicons name="ios-home" size={25} color={Colors.secondaryColor} />
-        );
-      },
-      tabBarColor: Colors.primaryColor
-    }
+  headerTitleStyle: {
+    fontFamily: 'open-sans-bold'
   },
-  Favorites: {
-    screen: FavNavigator,
-    navigationOptions: {
-      tabBarIcon: tabInfo => {
-        return <Ionicons name="ios-heart" size={25} color={Colors.secondaryColor} />;
-      },
-      tabBarColor: Colors.secondaryColor
-    }
-  }
+  headerBackTitleStyle: {
+    fontFamily: 'open-sans'
+  },
+  headerTintColor: Platform.OS === 'ios' ? Colors.primaryColor : 'white'
 };
 
-const RecipesFavTabNavigator =
-  createBottomTabNavigator(tabScreenConfig, {
-        tabBarOptions: {
-          activeTintColor: Colors.secondaryColor
-        }
-      });
+const AppStackNavigator = createStackNavigator();
 
-export default createAppContainer(RecipesFavTabNavigator);
+export const AppNavigator = () => {
+  return (
+    <AppStackNavigator.Navigator screenOptions={defaultNavOptions}>
+      <AppStackNavigator.Screen
+        name="Categories"
+        component={AppTabs}
+        options={categoriesPageOptions}
+      />
+      <AppStackNavigator.Screen
+        name="CategoryRecipes"
+        component={CategoryRecipePage}
+        options={categoryRecipePageOptions}
+      />
+      <AppStackNavigator.Screen
+        name="RecipeDetails"
+        component={RecipeDetailPage}
+        options={recipeDetailsPageOptions}
+      />
+    </AppStackNavigator.Navigator>
+  );
+};
+
+const FavStackNavigator = createStackNavigator();
+
+export const FavNavigator = () => {
+  return (
+    <FavStackNavigator.Navigator screenOptions={defaultNavOptions}>
+      <FavStackNavigator.Screen
+        name="Favorites"
+        component={FavoritesPage}
+        options={favoritesPageOptions}
+      />
+    </FavStackNavigator.Navigator>
+  );
+};
+
+const Tab = createBottomTabNavigator();
+
+export const AppTabs = () => {
+  return (
+    <Tab.Navigator
+        initialRouteName="Categories"
+        tabBarOptions={{
+          activeTintColor: Colors.primaryColor,
+        }}
+    >
+      <Tab.Screen 
+        name="Categories" 
+        component={CategoriesPage}
+        options={{
+          tabBarLabel: 'Categories',
+          tabBarIcon: () => (
+            <Ionicons name="ios-home" size={25} color={Colors.secondaryColor} />
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="Favorites" 
+        component={FavoritesPage} 
+        options={{
+          tabBarLabel: 'Favorites',
+          tabBarIcon: () => (
+            <Ionicons name="ios-heart" size={25} color={Colors.secondaryColor} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}

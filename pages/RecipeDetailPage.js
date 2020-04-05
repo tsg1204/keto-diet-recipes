@@ -13,29 +13,24 @@ import { Colors } from '../data/data';
 import HeaderButton from '../components/HeaderButton';
 import { toggleFavorite, fetchRecipeDetails, fetchFavoriteRecipes, toggleFavoriteButton } from '../store/actions/recipes';
 
-const ListItem = props => {
+const ListItem = items => {
   return (
     <View style={styles.listItem}>
-      <Text>{props.children}</Text>
+      <Text>{items.children}</Text>
     </View>
   );
 };
 
-const RecipeDetailPage = ({navigation}) => {
-  const catId = navigation.getParam('catId');
-  //console.log('categoryId from RecipeDetailPage: ', catId)
-  const itemId = navigation.getParam('itemId');
-  //console.log('itemId from RecipeDetailPage: ', itemId)
-  //get/check favorites in the state 
-  //const currentRecipeIsFavorite = useSelector(state => state.recipes.favoriteRecipe.favorite)
-  const insideId = navigation.getParam('insideId');
+const RecipeDetailPage = props => {
+  const catId = props.route.params.catId;
+  const itemId = props.route.params.itemId;
+  const insideId = props.route.params.insideId;
+
   const currentRecipeIsFavorite = useSelector(state =>
     state.recipes.favoriteRecipes.some(recipe => recipe.id === insideId)
   );
-  //console.log('favorite status from RecipeDetailPage: ', currentRecipeIsFavorite)
   //recipe to render
   const selectedItem = useSelector( state => state.recipe.recipe)
-  //console.log('selected recipe from Details from fetch actions: ', selectedItem.imageUrl)
 
   const dispatch = useDispatch();
 
@@ -56,11 +51,11 @@ const RecipeDetailPage = ({navigation}) => {
   }, [dispatch, currentRecipeIsFavorite]);
 
   useEffect(() => {
-    navigation.setParams({ toggleFav: toggleFavoriteHandler });
+    props.navigation.setParams({ toggleFav: toggleFavoriteHandler });
   }, [toggleFavoriteHandler]);
 
   useEffect(() => {
-    navigation.setParams({ favorite: currentRecipeIsFavorite });
+    props.navigation.setParams({ favorite: currentRecipeIsFavorite });
     //update DB for current recipe, set favorite to currentRecipeIsFavorite value
     dispatch(toggleFavorite(catId, itemId, currentRecipeIsFavorite));
   }, [currentRecipeIsFavorite]);
@@ -87,10 +82,10 @@ const RecipeDetailPage = ({navigation}) => {
   );
 };
 
-RecipeDetailPage['navigationOptions'] = (navigationData) => {
-  const recipeTitle = navigationData.navigation.getParam('recipeTitle')
-  const toggleFav = navigationData.navigation.getParam('toggleFav');
-  const isFavorite = navigationData.navigation.getParam('favorite');
+export const screenOptions = navData => {
+  const recipeTitle = navData.route.params.recipeTitle;
+  const toggleFav = navData.route.params.toggleFav;
+  const isFavorite = navData.route.params.favorite;
 
   return {
     headerTitle: ` ${recipeTitle}`,

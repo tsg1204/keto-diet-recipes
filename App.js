@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import * as Font from 'expo-font';
-import { AppLoading } from 'expo';
+import { AppLoading, Linking } from 'expo';
 import { SafeAreaProvider  } from 'react-native-safe-area-context';
  import { Provider } from "react-redux";
  import { createStore, applyMiddleware, combineReducers } from 'redux';
  import ReduxThunk from 'redux-thunk';
+ import { NavigationContainer } from '@react-navigation/native';
  
 //react native navigation https://reactnavigation.org/docs/4.x/getting-started/
-import AppNavigator from './navigation/AppNavigator';
+import { AppNavigator, AppTabs } from './navigation/AppNavigator';
 import recipesReducer from './store/reducers/recipesReducer';
 import singleRecipeReducer from './store/reducers/singleRecipeReducer';
 
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 })
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
+const prefix = Linking.makeUrl('/');
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -41,7 +43,9 @@ export default function App() {
   return (
     <Provider store={store}>
       <SafeAreaProvider>
-        <AppNavigator />
+        <NavigationContainer >
+          <AppNavigator  uriPrefix={prefix} />
+        </NavigationContainer>
       </SafeAreaProvider>
     </Provider>
 

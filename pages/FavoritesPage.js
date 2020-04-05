@@ -10,9 +10,9 @@ import {
 import { Colors } from '../data/data';
 import { fetchFavoriteRecipes } from '../store/actions/recipes';
 
-const FavoritesPage = ({ navigation }) => {
+const FavoritesPage = props => {
   const recipes = useSelector( state => state.recipes.favoriteRecipes);
-  const catId = navigation.getParam('categoryId');
+  //const catId = props.route.params.categoryId;
 
   const dispatch = useDispatch();
 
@@ -21,16 +21,16 @@ const FavoritesPage = ({ navigation }) => {
     dispatch(fetchFavoriteRecipes());   
   }, [dispatch]);
 
-  function ListItem(props) {
-    const { id, image, title, duration, favorite, insideId } = props;
+  function ListItem(items) {
+    const { id, image, title, duration, favorite, insideId } = items;
     return (
       <View style={styles.listItem} >
         <TouchableOpacity 
           onPress={() => {
-            navigation.navigate('RecipeDetails', {
+            props.navigation.navigate('RecipeDetails', {
                 itemId: id,
                 recipeTitle: title,
-                catId: catId,
+                //catId: catId,
                 favorite: favorite,
                 insideId: insideId
             });
@@ -93,13 +93,15 @@ const FavoritesPage = ({ navigation }) => {
   );
 };
 
-FavoritesPage['navigationOptions'] = {
-  title: 'Favorite Recipes',
-  headerStyle: {
-    backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
-  },
-  headerTintColor: Colors.secondaryColor 
-};
+export const screenOptions = () =>  {
+  return {
+    headerTitle: 'Favorite Recipes',
+    headerStyle: {
+      backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
+    },
+    headerTintColor: Colors.secondaryColor 
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
