@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/keto-diet-recipes/precache-manifest.902c5f42311ca61dfbad59604c345aa7.js"
+  "/keto-diet-recipes/precache-manifest.0c2f10a2d190c6bd6160bc8c00dfe94f.js"
 );
 
 workbox.skipWaiting();
