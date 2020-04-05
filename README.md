@@ -13,8 +13,11 @@ To start the project:
 npm start or expo start
 
 # Images
+iOS\
 ![ios image](assets/ios-img.png)\
+Android\
 ![android image](assets/android-img.png)\
+Web App\
 ![web image](assets/web-img.png)
 
 
