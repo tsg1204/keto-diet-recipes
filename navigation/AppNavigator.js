@@ -7,6 +7,7 @@ import CategoriesPage, {screenOptions as categoriesPageOptions}  from '../pages/
 import CategoryRecipePage, {screenOptions as categoryRecipePageOptions}  from '../pages/CategoryRecipePage';
 import RecipeDetailPage, {screenOptions as recipeDetailsPageOptions}  from '../pages/RecipeDetailPage';
 import FavoritesPage, {screenOptions as favoritesPageOptions}  from '../pages/FavoritesPage';
+import CaloriesCalculator, {screenOptions as calculatorPageOptions}  from '../pages/CaloriesCalculator';
 import { Colors } from '../data/data';
 
 const defaultNavOptions = {
@@ -62,6 +63,20 @@ export const FavNavigator = () => {
   );
 };
 
+const CalculatorStackNavigator = createStackNavigator();
+
+export const CalcNavigator = () => {
+  return (
+    <CalculatorStackNavigator.Navigator screenOptions={defaultNavOptions}>
+      <CalculatorStackNavigator.Screen
+        name="Calculator"
+        component={CaloriesCalculator}
+        options={calculatorPageOptions}
+      />
+    </CalculatorStackNavigator.Navigator>
+  );
+};
+
 const Tab = createBottomTabNavigator();
 
 export const AppTabs = () => {
@@ -79,6 +94,16 @@ export const AppTabs = () => {
           tabBarLabel: 'Categories',
           tabBarIcon: () => (
             <Ionicons name="ios-home" size={25} color={Colors.secondaryColor} />
+          ),
+        }}
+      />
+      <Tab.Screen 
+        name="Calculator" 
+        component={CalcNavigator}
+        options={{
+          tabBarLabel: 'Calculator',
+          tabBarIcon: () => (
+            <Ionicons name="ios-calculator" size={25} color={Colors.secondaryColor} />
           ),
         }}
       />

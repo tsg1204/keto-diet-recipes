@@ -233,3 +233,4 @@ export const RECIPES = {
   available: MEALS,
   favorites: []
 }
+
