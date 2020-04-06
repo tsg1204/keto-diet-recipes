@@ -20,19 +20,20 @@ const UseFocus = () => {
 const CaloriesCalculator = props => {
     const [gender, setGender] = useState('female');
     const [age, setAge] = useState('');
-    const [inputAgeRef, setInputAgeFocus] = UseFocus()
-    console.log('inputAge:' , inputAgeRef)
-    console.log('setFocus: ', setInputAgeFocus)
+    //const [inputAgeRef, setInputAgeFocus] = UseFocus()
+    //console.log('inputAge:' , inputAgeRef)
+    //console.log('setFocus: ', setInputAgeFocus)
 
     const [weight, setWeight] = useState('');
-    const [inputWeightRef, setInputWeightFocus] = UseFocus()
+    //const [inputWeightRef, setInputWeightFocus] = UseFocus()
     const [feet, setFeet] = useState('');
-    const [inputFeetRef, setInputFeetFocus] = UseFocus()
+    //const [inputFeetRef, setInputFeetFocus] = UseFocus()
     const [inches, setInches] = useState('');
-    const [inputInchesRef, setInputInchesFocus] = UseFocus()
+    //const [inputInchesRef, setInputInchesFocus] = UseFocus()
     const [activity, setActivityFactor] = useState('bmr');
     const [dailyCalories, setDailyCalories] = useState('');
     const [showResult, setShowResult] = useState(false);
+    const [inputs, focusTheField] = useState({});
 
     const calculateCalories = () => {
         // if (
@@ -91,7 +92,6 @@ const CaloriesCalculator = props => {
                         <TextInput
                             style={styles.input}
                             placeholder="00"
-                            onFocus={setInputAgeFocus}
                             returnKeyType={ 'next' }
                             blurOnSubmit={ false }
                             value={age}
@@ -101,9 +101,9 @@ const CaloriesCalculator = props => {
                                 setAge(text)
                             }}
                             onSubmitEditing={() => {
-                                setInputWeightFocus()
+                                focusTheField('weight').focus()
                             }}
-                            ref={inputAgeRef}
+                            //ref={inputAgeRef}
                         />
                     </View>
                     <View style={styles.formControl}>
@@ -116,8 +116,8 @@ const CaloriesCalculator = props => {
                             value={weight}
                             keyboardType="numeric"
                             onChangeText={weight => setWeight(weight)}
-                            onSubmitEditing={() => setInputFeetFocus()}
-                            ref={inputWeightRef}
+                            onSubmitEditing={() => focusTheField('feet').focus()}
+                            ref={input => inputs['weight'] = input}
                         />
                     </View>
                     <View style={styles.formControl}>
@@ -130,19 +130,18 @@ const CaloriesCalculator = props => {
                             value={feet}
                             keyboardType="numeric"
                             onChangeText={feet => setFeet(feet)}
-                            onSubmitEditing={() => setInputInchesFocus()}
-                            ref={inputFeetRef}
+                            onSubmitEditing={() => focusTheField('inches').focus()}
+                            ref={input => inputs['feet'] = input}
                         />
                         <Text style={styles.label}>Inches</Text>
                         <TextInput
                             style={styles.input}
                             placeholder="00"
-                            returnKeyType={ 'next' }
+                            returnKeyType={ "done" }
                             blurOnSubmit={ false }
                             value={inches}
                             keyboardType="numeric"
                             onChangeText={inches => setInches(inches)}
-                            ref={inputInchesRef}
                         />
                     </View>
                     <View style={styles.formControl}>
