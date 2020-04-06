@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, TextInput, StyleSheet, Platform, Picker, TouchableOpacity, Keyboard }  from 'react-native';
+import { View, ScrollView, Text, TextInput, StyleSheet, Platform, Picker, TouchableOpacity, Keyboard, Button }  from 'react-native';
 import { CheckBox } from 'react-native-elements'
 import { Ionicons } from '@expo/vector-icons';
 import {
@@ -10,13 +10,14 @@ import { menBMR, womenBMR, activityIndicator } from "../utils/helper";
 import { Colors } from '../data/data';
 
 const CaloriesCalculator = props => {
-    const [gender, setGender] = useState('female');
+    const [gender, setGender] = useState('');
     const [age, setAge] = useState('');
     const [weight, setWeight] = useState('');
     const [feet, setFeet] = useState('');
     const [inches, setInches] = useState('');
     const [activity, setActivityFactor] = useState('bmr');
     const [dailyCalories, setDailyCalories] = useState('');
+    const [showResult, setShowResult] = useState(false);
 
     const calculateCalories = () => {
         // if (
@@ -44,25 +45,30 @@ const CaloriesCalculator = props => {
                 setDailyCalories( dailyCalories );
             }
             console.log('dailyCalories: ', dailyCalories)
+            setShowResult(true);
         //}
     };
 
+    function Separator() {
+        return <View style={styles.separator} />;
+    }
+      
     function InputForm() {
         return (
             <ScrollView>
                 <View style={styles.form}>
                     <View style={styles.formControl}>
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={styles.checkBoxContainer}>
                             <CheckBox
                                 checked={gender === 'male' ? true : false}
                                 onPress={ () => { setGender('male') }}
                             />
-                            <Text> Male</Text>
+                            <Text style={{marginTop: 20}}> Male</Text>
                             <CheckBox
                                 checked={gender === 'female' ? true : false}
                                 onPress={ () => { setGender('female') }}
                             />
-                            <Text>Female</Text>
+                            <Text style={{marginTop: 20}}>Female</Text>
                         </View>
                     </View>
                     <View style={styles.formControl}>
@@ -146,15 +152,14 @@ const CaloriesCalculator = props => {
                             </Picker>
                         </View>
                     </View>
-                    <View style={styles.calculateButtonContainer}>
-                        <TouchableOpacity
-                            onPress={() => calculateCalories()}
-                        >
-                            <View >
-                                <Text>Calculate</Text>
-                            </View>
-                        </TouchableOpacity>
-                    </View>
+                </View>
+
+                <View style={styles.calculateButtonContainer}>
+                    <TouchableOpacity
+                        onPress={() => calculateCalories()}
+                    >
+                    <Text style={{color: Colors.secondaryColor}}>CALCULATE</Text>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         );
@@ -163,17 +168,36 @@ const CaloriesCalculator = props => {
     function CalculationResult() {
         return (
           <View style={styles.container}>
-            <Text>Calculation result: {dailyCalories}</Text>
+            <Text>Calculation result: {dailyCalories}.</Text>
+            <View style={styles.calculateButtonContainer}>
+                <TouchableOpacity
+                    onPress={() => Reset()}
+                >
+                <Text style={{color: Colors.secondaryColor}}>RESET</Text>
+                </TouchableOpacity>
+            </View>
           </View>
         )
     }
 
-    if (dailyCalories !== '') {
-        return <CalculationResult />
+    function Reset() {
+        setGender('');
+        setAge('');
+        setWeight('');
+        setFeet('');
+        setInches('');
+        setActivityFactor('bmr');
+        setDailyCalories('');
+        setShowResult(false);
     }
 
     return (
-        <InputForm />   
+        <View>
+            <InputForm /> 
+            { showResult ? (<CalculationResult />) : null }
+        </View>
+         
+
     );
 }
 //md-calculator
@@ -190,13 +214,11 @@ export const screenOptions = () =>  {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 10,
-        padding: 15,
         justifyContent: 'center',
         alignItems: 'center',
     },
     form: {
-      margin: 20
+      margin: 40
     },
     formControl: {
       width: '80%',
@@ -205,6 +227,7 @@ const styles = StyleSheet.create({
     label: {
         color: Colors.secondaryColor,
         fontFamily: 'open-sans-bold',
+        fontSize: hp('1.9%'),
         marginVertical: 8
     },
     input: {
@@ -214,24 +237,33 @@ const styles = StyleSheet.create({
       borderBottomWidth: 1
     },
     pickerContainer: {
-        flex: 1,
-        paddingTop: 40,
-        alignItems: 'flex-end',
+        flex:1,
+        alignItems: 'center',
         width: wp('100%'),
+        marginRight: 30
     },
     calculateButtonContainer: {
-        flex: 1,
         justifyContent: "flex-end",
-        alignItems: "center"
+        alignItems: "center",
+        marginTop: 150,
     },
     calculateButton: {
-        height: 80,
+        height: 80
+        
     },
     calculateButtonText: {
-        left: 10,
-        fontSize: 28,
-        color: "white"
+        fontSize: hp('1.9%'),
     },
+    checkBoxContainer: {
+        flexDirection: "row",
+        alignContent: "space-between",
+        justifyContent: "space-around",
+    },
+    separator: {
+        marginVertical: 5,
+        borderBottomColor: '#737373',
+        borderBottomWidth: StyleSheet.hairlineWidth,
+      },
   });
   
   export default CaloriesCalculator;
