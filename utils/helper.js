@@ -1,19 +1,19 @@
 export const menBMR = (weight, height, age) => {
     const calories = (
-      88.362 +
-      13.397 * weight +
-      4.799 * height -
-      5.677 * age
+      66 +
+      6.3 * weight +
+      12.9 * height -
+      6.8 * age
     ).toFixed();
     return calories;
   };
   
   export const womenBMR = (weight, height, age) => {
     const calories = (
-      447.593 +
-      9.247 * weight +
-      3.098 * height -
-      4.33 * age
+      655 +
+      4.3 * weight +
+      4.7 * height -
+      4.7 * age
     ).toFixed();
     return calories;
   };

@@ -27,8 +27,12 @@ const CaloriesCalculator = props => {
         // ) {
         //     alert("Fill all fields please!");
         // } else {
-            let height = feet + inches ;
-          
+            let height = (feet*12 + parseInt(inches)) ;
+            console.log('height: ', height)
+            console.log( 'gender: ', gender)
+            console.log( 'weight: ', weight)
+            console.log( 'age: ', age)
+
             if (gender === 'male') {
                 let dailyCalories = menBMR(weight, height, age);
                 dailyCalories = activityIndicator(dailyCalories, activity);
@@ -39,6 +43,7 @@ const CaloriesCalculator = props => {
                 dailyCalories = activityIndicator(dailyCalories, activity);
                 setDailyCalories( dailyCalories );
             }
+            console.log('dailyCalories: ', dailyCalories)
         //}
     };
 
