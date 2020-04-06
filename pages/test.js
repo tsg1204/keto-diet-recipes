@@ -21,9 +21,6 @@ const CaloriesCalculator = props => {
     const [gender, setGender] = useState('female');
     const [age, setAge] = useState('');
     const [inputAgeRef, setInputAgeFocus] = UseFocus()
-    console.log('inputAge:' , inputAgeRef)
-    console.log('setFocus: ', setInputAgeFocus)
-
     const [weight, setWeight] = useState('');
     const [inputWeightRef, setInputWeightFocus] = UseFocus()
     const [feet, setFeet] = useState('');
@@ -33,6 +30,10 @@ const CaloriesCalculator = props => {
     const [activity, setActivityFactor] = useState('bmr');
     const [dailyCalories, setDailyCalories] = useState('');
     const [showResult, setShowResult] = useState(false);
+
+    const onSubmitAge = () => {
+        age.focus();
+    }
 
     const calculateCalories = () => {
         // if (
@@ -68,6 +69,8 @@ const CaloriesCalculator = props => {
         return <View style={styles.separator} />;
     }
     
+      
+
     function InputForm() {
         return (
             <ScrollView>
@@ -91,7 +94,7 @@ const CaloriesCalculator = props => {
                         <TextInput
                             style={styles.input}
                             placeholder="00"
-                            onFocus={setInputAgeFocus}
+                            autoFocus={true}
                             returnKeyType={ 'next' }
                             blurOnSubmit={ false }
                             value={age}
@@ -99,6 +102,8 @@ const CaloriesCalculator = props => {
                             numberOfLines={1}
                             onChangeText={text => {
                                 setAge(text)
+                                console.log('changed')
+                                setInputWeightFocus()
                             }}
                             onSubmitEditing={() => {
                                 setInputWeightFocus()

@@ -22,14 +22,13 @@ const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 const prefix = Linking.makeUrl('/')
 //console.log('prefix: ', prefix)
 const config = {
-  Categories: {
-    path: "categories", //?
-    initialRouteName: "Categories",
+  RecipeDetails: {
+    path: "recipe-details", //?
+    initialRouteName: "RecipeDetails",
     screens: {
-      Categories: "categories",
+      RecipeDetails: "recipe-details",
     }
   },
-  RecipeDetails: "recipe-details"
 };
 
 const fetchFonts = () => {
@@ -82,7 +81,7 @@ export default function App() {
     <Provider store={store}>
       <SafeAreaProvider>
         <NavigationContainer >
-          <AppTabs />
+          <AppTabs initialState={initialState} />
         </NavigationContainer>
       </SafeAreaProvider>
     </Provider>

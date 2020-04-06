@@ -8,11 +8,12 @@ import CategoryRecipePage, {screenOptions as categoryRecipePageOptions}  from '.
 import RecipeDetailPage, {screenOptions as recipeDetailsPageOptions}  from '../pages/RecipeDetailPage';
 import FavoritesPage, {screenOptions as favoritesPageOptions}  from '../pages/FavoritesPage';
 import CaloriesCalculator, {screenOptions as calculatorPageOptions}  from '../pages/CaloriesCalculator';
+import CalculationResultPage, {screenOptions as calculationResultPageOptions}  from '../pages/CalculationResultPage';
 import { Colors } from '../data/data';
 
 const defaultNavOptions = {
   headerStyle: {
-    backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor
+    backgroundColor: Colors.primaryColor
   },
   headerTitleStyle: {
     fontFamily: 'open-sans'
@@ -32,7 +33,6 @@ export const AppNavigator = () => {
         name="Categories"
         component={CategoriesPage}
         options={categoriesPageOptions}
-        path={'categories'}
       />
       <AppStackNavigator.Screen
         name="CategoryRecipes"
@@ -74,6 +74,20 @@ export const CalcNavigator = () => {
         options={calculatorPageOptions}
       />
     </CalculatorStackNavigator.Navigator>
+  );
+};
+
+const CalculatResultStackNavigator = createStackNavigator();
+
+export const CalcResultNavigator = () => {
+  return (
+    <CalculatResultStackNavigator.Navigator screenOptions={defaultNavOptions}>
+      <CalculatResultStackNavigator.Screen
+        name="CalculationResult"
+        component={CalculationResultPage}
+        options={calculationResultPageOptions}
+      />
+    </CalculatResultStackNavigator.Navigator>
   );
 };
 
