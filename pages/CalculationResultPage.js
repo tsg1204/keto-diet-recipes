@@ -14,7 +14,10 @@ const CalculationResultPage = props => {
 
   return (
     <View style={styles.container}>
-        <Text>Your personal result: {result}</Text>
+        <Text styles={styles.resultLabel}>YOUR PERSONAL RESULT:</Text>
+        <View style={styles.resultDisplay}>
+          <Text style={styles.resultText}>{result}</Text>
+        </View>
         <TouchableOpacity
             onPress={() => {
               props.navigation.push('Calculator', {
@@ -58,6 +61,28 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: "center",
     alignContent: 'center'
+  },
+  resultLabel: {
+    marginBottom: 20,
+    color: Colors.secondaryColor,
+    fontFamily: 'open-sans-bold',
+    fontSize: hp('1.8%'),
+  },
+  resultDisplay: {
+    marginVertical: 20,
+    borderWidth: 1,
+    borderRadius: 20,
+    width: wp('25%'),
+    backgroundColor: Colors.primaryColor,
+    color: Colors.secondaryColor,
+    padding: 40,
+    justifyContent: 'center',
+    alignItems: "center",
+    alignContent: 'center'
+  },
+  resultText: {
+    fontSize: 'open-sans-bold',
+    fontSize: hp('3%'),
   }
 });
 
