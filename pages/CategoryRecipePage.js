@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     //have to adjust images size
-    //width: Platform.OS === 'ios' ? Dimensions.get('screen').width : Dimensions.get('window').width,
+    width: Platform.OS === 'ios' ? Dimensions.get('screen').width : '',
     height: Platform.OS === 'ios' ? Dimensions.get('screen').width*.5 : Dimensions.get('window').width*.2,
     justifyContent: 'flex-end',
     textAlign: 'center',
