@@ -116,9 +116,10 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     //have to adjust images size
-    width: Platform.OS === 'ios' ? Dimensions.get('screen').width : Dimensions.get('window').width,
+    //width: Platform.OS === 'ios' ? Dimensions.get('screen').width : Dimensions.get('window').width,
     height: Platform.OS === 'ios' ? Dimensions.get('screen').width*.5 : Dimensions.get('window').width*.2,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    textAlign: 'center',
   },
   listRow: {
     flexDirection: 'row'
@@ -129,6 +130,7 @@ const styles = StyleSheet.create({
   listDetail: {
     paddingHorizontal: 10,
     alignItems: 'center',
+
     //height: hp('5%'),
     fontFamily: 'open-sans-bold',
   },

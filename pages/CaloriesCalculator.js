@@ -70,19 +70,17 @@ const CaloriesCalculator = props => {
         return (
             <ScrollView>
                 <View style={styles.container}>
-                    <View style={styles.formControl}>
-                        <View style={styles.checkBoxContainer}>
-                            <CheckBox
-                                checked={gender === 'male' ? true : false}
-                                onPress={ () => { setGender('male') }}
-                            />
-                            <Text style={{marginTop: 20, fontFamily: 'open-sans',color: Colors.secondaryColor,}}> Male</Text>
-                            <CheckBox
-                                checked={gender === 'female' ? true : false}
-                                onPress={ () => { setGender('female') }}
-                            />
-                            <Text style={{marginTop: 20, fontFamily: 'open-sans',color: Colors.secondaryColor,}}>Female</Text>
-                        </View>
+                    <View style={styles.checkBoxContainer}>
+                        <CheckBox
+                            checked={gender === 'male' ? true : false}
+                            onPress={ () => { setGender('male') }}
+                        />
+                        <Text style={{marginTop: 20, fontSize: hp('1.8%'),fontFamily: 'open-sans',color: Colors.secondaryColor,}}> Male</Text>
+                        <CheckBox
+                            checked={gender === 'female' ? true : false}
+                            onPress={ () => { setGender('female') }}
+                        />
+                        <Text style={{marginTop: 20, fontSize: hp('1.8%'),fontFamily: 'open-sans',color: Colors.secondaryColor,}}>Female</Text>
                     </View>
                     <View style={styles.ageWeight}>
                         <Text style={styles.label}>Age:</Text>
@@ -122,10 +120,8 @@ const CaloriesCalculator = props => {
                             returnKeyType={ 'next' }
                             ref={input => inputs['weight'] = input}
                         />
-                    </View>
-                    <View>
-                        
-                        <View style={styles.height}>
+                    </View>   
+                    <View style={styles.height}>
                             <Text style={styles.label}>Height:</Text>
                             <Text style={styles.label}>ft</Text>
                             <TextInput
@@ -157,10 +153,6 @@ const CaloriesCalculator = props => {
                                 onChangeText={text=> setInches(text)}
                             />
                         </View>
-                    </View>
-
-                    <View style={styles.formControl}>
-                    </View>
                     <View style={styles.formControl}>
                         <Text style={styles.label}>Activity factor</Text>
                         <View style={styles.pickerContainer}>
@@ -170,32 +162,32 @@ const CaloriesCalculator = props => {
                                 onValueChange={(itemValue, itemIndex) => setActivityFactor(itemValue)}
                             >
                                 <Picker.Item
-                                    style={{fontSize: hp('1.2%')}}
+                                    itemStyle={{fontSize: hp('1.2%')}}
                                     label="Basal Metabolic Rate (BMR)"
                                     value="bmr"
                                 />
                                 <Picker.Item
-                                style={{fontSize: hp('1.2%')}}
+                                itemStyle={{fontSize: hp('1.2%')}}
                                     label="Sedentary - little or no exercise"
                                     value="sedentary"
                                 />
                                 <Picker.Item
-                                style={{fontSize: hp('1.2%')}}
+                                itemStyle={{fontSize: hp('1.2%')}}
                                     label="Moderate - exercise 1-3 times/week"
                                     value="moderate"
                                 />
                                 <Picker.Item
-                                style={{fontSize: hp('1.2%')}}
+                                itemStyle={{fontSize: hp('1.2%')}}
                                     label="Mild - exercise 3-5 times/week"
                                     value="mild"
                                 />
                                 <Picker.Item
-                                style={{fontSize: hp('1.2%')}}
+                                itemStyle={{fontSize: hp('1.2%')}}
                                     label="Heavy - exercise 6-7 times/week"
                                     value="heavy"
                                 />
                                 <Picker.Item
-                                style={{fontSize: hp('1.2%')}}
+                                itemStyle={{fontSize: hp('1.2%')}}
                                     label="Extreme - exercise(twice/day)"
                                     value="extreme"
                                 />
@@ -203,7 +195,6 @@ const CaloriesCalculator = props => {
                         </View>
                     </View>
                 </View>
-
                 <View style={styles.calculateButtonContainer}>
                     <TouchableOpacity
                         onPress={calculateCalories}
@@ -226,7 +217,7 @@ const CaloriesCalculator = props => {
                     <Text style={{color: Colors.secondaryColor}}>RESET</Text>
                     </TouchableOpacity>
                 </View>
-          </View>
+            </View>
         )
     }
 
@@ -266,7 +257,6 @@ export const screenOptions = () =>  {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        margin: 0
     },
     formControl: {
       width: '80%',
@@ -291,12 +281,12 @@ export const screenOptions = () =>  {
     pickerContainer: {
         flex:1,
         alignItems: Platform.OS === 'ios' ? 'flex-end' : (Platform.OS === 'android' ? 'flex-start' : 'flex-start'),
-        //width: wp('100%'),
+        width: wp('100%'),
         fontSize: hp('1.9%'),
 
     },
     calculateButtonContainer: {
-        justifyContent: "flex-end",
+        //justifyContent: "flex-end",
         alignItems: "center",
         marginTop: Platform.OS === 'ios' ? 200 : (Platform.OS === 'android' ? 150 : 150)
     },
@@ -312,7 +302,6 @@ export const screenOptions = () =>  {
         alignContent: "space-between",
         justifyContent: "space-around",
         marginTop: 20,
-        marginLeft: Platform.OS === 'ios' ? 50 : (Platform.OS === 'android' ? 100 : 120)
     },
     separator: {
         marginVertical: 5,
