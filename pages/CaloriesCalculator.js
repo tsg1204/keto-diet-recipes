@@ -18,6 +18,10 @@ import { Colors } from '../data/data';
 // }
 
 const CaloriesCalculator = props => {
+    //reset all calculator parameters when back from result page
+    const resetCalculator = reset || null;
+    if (resetCalculator) reset();
+
     const [gender, setGender] = useState('female');
     const [age, setAge] = useState('');
     //const [inputAgeRef, setInputAgeFocus] = UseFocus()
@@ -34,6 +38,7 @@ const CaloriesCalculator = props => {
     const [dailyCalories, setDailyCalories] = useState('');
     const [showResult, setShowResult] = useState(false);
     const [inputs, setInputs] = useState({});
+    const [reset, setReset] = useState(false);
 
     const focusNextField = (id) => {
         inputs[id].focus()
@@ -42,25 +47,24 @@ const CaloriesCalculator = props => {
 
     const calculateCalories = () => {
         let height = (feet*12 + parseInt(inches)) ;
+        let daily = '';
 
         if (gender === 'male') {
-            let daily = menBMR(weight, height, age);
+            daily = menBMR(weight, height, age);
             daily = activityIndicator(daily, activity);
             setDailyCalories( daily );
 
         }
         if (gender === 'female') {
-            let daily = womenBMR(weight, height, age);
+            daily = womenBMR(weight, height, age);
             daily = activityIndicator(daily, activity);
             setDailyCalories( daily );
-            console.log('dailyCalories: ', dailyCalories)
-
-            // props.navigation.navigate('CalculationResult', {
-            //     dailyCalories:  dailyCalories ,
-            // });
+            console.log('dailyCalories: ', daily)
         }
-        //console.log('dailyCalories: ', dailyCalories)
-        setShowResult(true);
+        // //console.log('dailyCalories: ', dailyCalories)
+        // if (daily !== '' && daily !== NaN) {
+        //     setShowResult(true);
+        // }
     };
 
     function Separator() {
@@ -160,7 +164,7 @@ const CaloriesCalculator = props => {
                         <Text style={styles.label}>How active are you on daily basis?  </Text>
                         <View style={styles.pickerContainer}>
                             <Picker
-                                style={{ height: 40, width: 300, fontSize: hp('1.2%') }}
+                                style={{ minHeight: 40, width: 300, color: Colors.secondaryColor }}
                                 selectedValue={activity}
                                 onValueChange={(itemValue, itemIndex) => setActivityFactor(itemValue)}
                             >
@@ -204,7 +208,11 @@ const CaloriesCalculator = props => {
     }
 
     function CalculationResult() {
+        console.log('props from Calc page: ', props.navigation)
+        console.log('dailyCalories after calculation: ', dailyCalories)
+
         return (
+            
             <View style={styles.container}>
                 <Text>Your personal result: {dailyCalories}.</Text>
                 <View style={styles.resetButtonContainer}>
@@ -219,6 +227,7 @@ const CaloriesCalculator = props => {
     }
 
     function Reset() {
+        setReset(false)
         setGender('');
         setAge('');
         setWeight('');
@@ -232,7 +241,12 @@ const CaloriesCalculator = props => {
     return (
         <View>
             <InputForm /> 
-            { dailyCalories !== '' ? (<CalculationResult />) : null }
+            { (dailyCalories !== '' && dailyCalories !== NaN) ? (
+                props.navigation.navigate('CalculationResult', {
+                    dailyCalories: dailyCalories,
+                })
+               
+            ) : null }
         </View>
          
 
@@ -277,9 +291,10 @@ export const screenOptions = () =>  {
       alignContent: 'space-between'
     },
     pickerContainer: {
-        flex:1,
-        alignItems: Platform.OS === 'ios' ? 'flex-end' : (Platform.OS === 'android' ? 'flex-start' : 'flex-start'),
-        width: wp('100%'),
+        // flex:1,
+        // fontSize: hp('1.2%'),
+        // alignItems: Platform.OS === 'ios' ? 'flex-end' : (Platform.OS === 'android' ? 'flex-start' : 'flex-start'),
+        // width: wp('100%'),
     },
     calculateButtonContainer: {
         borderColor: '#c5e1a5',

@@ -6,12 +6,21 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
  } from 'react-native-responsive-screen';
+ import { connectActionSheet,   ActionSheetOptions, ActionSheetProps,} from '@expo/react-native-action-sheet';
+ import { MaterialIcons, Entypo } from '@expo/vector-icons';
+ import ShowActionSheetButton from '../components/ShowActionSheetButton';
 //https://github.com/facebookincubator/redux-react-hook
 //https://reactjs.org/docs/hooks-reference.html
 //https://react-redux.js.org/api/hooks
 import { Colors } from '../data/data';
 import HeaderButton from '../components/HeaderButton';
 import { toggleFavorite, fetchRecipeDetails, fetchFavoriteRecipes, toggleFavoriteButton } from '../store/actions/recipes';
+
+// const ASProps = ActionSheetProps;
+
+// const ASState = {
+//   selectedIndex: number | null
+// }
 
 const ListItem = items => {
   return (
@@ -21,7 +30,10 @@ const ListItem = items => {
   );
 };
 
-const RecipeDetailPage = props => {
+const RecipeDetailPage = (props, ASProps, ASState) => {
+  //const { showActionSheetWithOptions } = useActionSheet();
+  //const [selectedIndex, setSelectedIndex ] = useState(ASState.selectedIndex = null);
+
   const catId = props.route.params.catId;
   const itemId = props.route.params.itemId;
   const insideId = props.route.params.insideId;
@@ -137,4 +149,6 @@ const styles = StyleSheet.create({
   }
 });
 
-export default RecipeDetailPage;
+const ConnectedApp = connectActionSheet(RecipeDetailPage)
+
+export default ConnectedApp;

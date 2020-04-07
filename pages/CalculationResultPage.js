@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet , SafeAreaView, FlatList, TouchableOpacity, Platform} from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { View, Text, StyleSheet , SafeAreaView, FlatList, TouchableOpacity, Platform, Button} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -9,14 +8,25 @@ import Constants from 'expo-constants';
 import { Colors } from '../data/data';
 
 const CalculationResultPage = props => {
-
-    const result = props.route.params.dailyCalories;
+  //console.log('props from result page: ', props)
+  
+  const result = props.route.params.dailyCalories;
 
   return (
-    <View>
-        <Text>Calculation Result Page with daily calories result: {result}</Text>
+    <View style={styles.container}>
+        <Text>Your personal result: {result}</Text>
+        <TouchableOpacity
+            onPress={() => {
+              props.navigation.push('Calculator', {
+                reset: true,
+              })
+            }}
+          >
+          <Text style={styles.resetButton}>BACK TO CALCULATOR</Text>
+        </TouchableOpacity>
     </View>
   );
+
 };
 
 export const screenOptions = () =>  {
@@ -35,7 +45,20 @@ const styles = StyleSheet.create({
     marginTop: Constants.statusBarHeight,
     justifyContent: 'center',
     alignItems: 'center',
+    width: wp('100%'),
   },
+  resetButton: {
+    marginTop: 20,
+    borderColor: '#c5e1a5',
+    borderWidth: 2,
+    borderRadius: 25,
+    width: wp('40%'),
+    color: Colors.secondaryColor,
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: "center",
+    alignContent: 'center'
+  }
 });
 
 export default CalculationResultPage;

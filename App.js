@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { NavigationContainer, useLinking } from '@react-navigation/native';
- 
+import { ActionSheetProvider } from '@expo/react-native-action-sheet';
 //react native navigation https://reactnavigation.org/docs/4.x/getting-started/
 import { AppNavigator, AppTabs } from './navigation/AppNavigator';
 import recipesReducer from './store/reducers/recipesReducer';
@@ -78,6 +78,7 @@ export default function App() {
   };
 
   return (
+    <ActionSheetProvider>
     <Provider store={store}>
       <SafeAreaProvider>
         <NavigationContainer >
@@ -85,6 +86,8 @@ export default function App() {
         </NavigationContainer>
       </SafeAreaProvider>
     </Provider>
+    </ActionSheetProvider>
+
 
   );
 }

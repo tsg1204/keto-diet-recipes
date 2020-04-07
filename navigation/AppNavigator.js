@@ -75,26 +75,28 @@ export const CalcNavigator = () => {
       />
       <CalculatorStackNavigator.Screen
         name="CalculationResult"
-        component={CalcResultNavigator}
+        component={CalculationResultPage}
         options={calculationResultPageOptions}
+        initialParams={{ dailyCalories: '' }}
       />
     </CalculatorStackNavigator.Navigator>
   );
 };
 
-const CalculatResultStackNavigator = createStackNavigator();
+// const CalculatResultStackNavigator = createStackNavigator();
 
-export const CalcResultNavigator = () => {
-  return (
-    <CalculatResultStackNavigator.Navigator screenOptions={defaultNavOptions}>
-      <CalculatResultStackNavigator.Screen
-        name="CalculationResult"
-        component={CalculationResultPage}
-        options={calculationResultPageOptions}
-      />
-    </CalculatResultStackNavigator.Navigator>
-  );
-};
+// export const CalcResultNavigator = () => {
+//   return (
+//     <CalculatResultStackNavigator.Navigator screenOptions={defaultNavOptions}>
+//       <CalculatResultStackNavigator.Screen
+//         name="CalculationResult"
+//         component={CalculationResultPage}
+//         options={calculationResultPageOptions}
+//         initialParams={{ dailyCalories: '2222222' }}
+//       />
+//     </CalculatResultStackNavigator.Navigator>
+//   );
+// };
 
 const Tab = createBottomTabNavigator();
 
