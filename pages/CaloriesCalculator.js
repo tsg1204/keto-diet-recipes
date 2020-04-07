@@ -37,6 +37,7 @@ const CaloriesCalculator = props => {
 
     const focusNextField = (id) => {
         inputs[id].focus()
+        console.log('inputs fields: ', inputs[id])
     }
 
     const calculateCalories = () => {
@@ -83,12 +84,12 @@ const CaloriesCalculator = props => {
                         <Text style={{marginTop: 20, fontSize: hp('1.8%'),fontFamily: 'open-sans',color: Colors.secondaryColor,}}>Female</Text>
                     </View>
                     <View style={styles.ageWeight}>
-                        <Text style={styles.label}>Age:</Text>
+                        <Text style={styles.label}>How old are you? </Text>
                         <TextInput
                             style={styles.input}
                             autoCapitalize='none'
                             autoCorrect={false}
-                            placeholder="000"
+                            placeholder="21"
                             returnKeyType={ 'next' }
                             blurOnSubmit={ false }
                             value={age}
@@ -102,13 +103,14 @@ const CaloriesCalculator = props => {
                                 focusNextField('weight')                            }}
                             //ref={inputAgeRef}
                         />
-
-                        <Text style={styles.label}>Weight:</Text>
+                    </View>   
+                    <View style={styles.ageWeight}>
+                        <Text style={styles.label}>How much do you weight? </Text>
                         <TextInput
                             style={styles.input}   
                             autoCapitalize='none'  
                             autoCorrect={false}                       
-                            placeholder="000"
+                            placeholder="152"
                             blurOnSubmit={ false }
                             value={weight}
                             keyboardType="numeric"
@@ -120,10 +122,9 @@ const CaloriesCalculator = props => {
                             returnKeyType={ 'next' }
                             ref={input => inputs['weight'] = input}
                         />
-                    </View>   
+                    </View>  
                     <View style={styles.height}>
-                            <Text style={styles.label}>Height:</Text>
-                            <Text style={styles.label}>ft</Text>
+                            <Text style={styles.label}>How tall are you?  </Text>
                             <TextInput
                                 style={styles.input}
                                 autoCapitalize='none'
@@ -140,7 +141,8 @@ const CaloriesCalculator = props => {
                                 returnKeyType={ 'next' }
                                 ref={input => inputs['feet'] = input}
                             />
-                            <Text style={styles.label}>/ in</Text>
+                            <Text style={styles.label}>ft</Text>
+                            <Text style={styles.label}></Text>
                             <TextInput
                                 style={styles.input}
                                 autoCapitalize='none'
@@ -152,42 +154,37 @@ const CaloriesCalculator = props => {
                                 keyboardType="numeric"
                                 onChangeText={text=> setInches(text)}
                             />
+                            <Text style={styles.label}>in</Text>
                         </View>
                     <View style={styles.formControl}>
-                        <Text style={styles.label}>Activity factor</Text>
+                        <Text style={styles.label}>How active are you on daily basis?  </Text>
                         <View style={styles.pickerContainer}>
                             <Picker
-                                style={{ height: 40, width: 300, }}
+                                style={{ height: 40, width: 300, fontSize: hp('1.2%') }}
                                 selectedValue={activity}
                                 onValueChange={(itemValue, itemIndex) => setActivityFactor(itemValue)}
                             >
                                 <Picker.Item
-                                    itemStyle={{fontSize: hp('1.2%')}}
                                     label="Basal Metabolic Rate (BMR)"
                                     value="bmr"
                                 />
                                 <Picker.Item
-                                itemStyle={{fontSize: hp('1.2%')}}
                                     label="Sedentary - little or no exercise"
                                     value="sedentary"
                                 />
                                 <Picker.Item
-                                itemStyle={{fontSize: hp('1.2%')}}
                                     label="Moderate - exercise 1-3 times/week"
                                     value="moderate"
                                 />
                                 <Picker.Item
-                                itemStyle={{fontSize: hp('1.2%')}}
                                     label="Mild - exercise 3-5 times/week"
                                     value="mild"
                                 />
                                 <Picker.Item
-                                itemStyle={{fontSize: hp('1.2%')}}
                                     label="Heavy - exercise 6-7 times/week"
                                     value="heavy"
                                 />
                                 <Picker.Item
-                                itemStyle={{fontSize: hp('1.2%')}}
                                     label="Extreme - exercise(twice/day)"
                                     value="extreme"
                                 />
@@ -209,8 +206,8 @@ const CaloriesCalculator = props => {
     function CalculationResult() {
         return (
             <View style={styles.container}>
-                <Text>Calculation result: {dailyCalories}.</Text>
-                <View style={styles.calculateButtonContainer}>
+                <Text>Your personal result: {dailyCalories}.</Text>
+                <View style={styles.resetButtonContainer}>
                     <TouchableOpacity
                         onPress={() => Reset()}
                     >
@@ -235,7 +232,7 @@ const CaloriesCalculator = props => {
     return (
         <View>
             <InputForm /> 
-            { showResult ? (<CalculationResult />) : null }
+            { dailyCalories !== '' ? (<CalculationResult />) : null }
         </View>
          
 
@@ -267,8 +264,9 @@ export const screenOptions = () =>  {
         fontFamily: 'open-sans',
         fontSize: hp('1.8%'),
         marginVertical: 8,
-        marginEnd: 10,
-        marginStart: 30
+        //marginEnd: 10,
+        marginStart: 10
+
     },
     input: {
       paddingHorizontal: 2,
@@ -282,17 +280,27 @@ export const screenOptions = () =>  {
         flex:1,
         alignItems: Platform.OS === 'ios' ? 'flex-end' : (Platform.OS === 'android' ? 'flex-start' : 'flex-start'),
         width: wp('100%'),
-        fontSize: hp('1.9%'),
-
     },
     calculateButtonContainer: {
-        //justifyContent: "flex-end",
+        borderColor: '#c5e1a5',
+        borderWidth: 2,
+        borderRadius: 25,
+        marginLeft: '35%',
+        width: wp('30%'),
+        padding: 10,
+        justifyContent: "flex-end",
         alignItems: "center",
         marginTop: Platform.OS === 'ios' ? 200 : (Platform.OS === 'android' ? 150 : 150)
     },
-    calculateButton: {
-        height: 80
-        
+    resetButtonContainer: {
+        borderColor: '#c5e1a5',
+        borderWidth: 2,
+        borderRadius: 25,
+        width: wp('20%'),
+        padding: 10,
+        //justifyContent: "flex-end",
+        alignItems: "center",
+        marginTop: Platform.OS === 'ios' ? 200 : (Platform.OS === 'android' ? 150 : 150)
     },
     calculateButtonText: {
         fontSize: hp('1.9%'),

@@ -310,3 +310,64 @@ export const screenOptions = () =>  {
 
   
 export default CaloriesCalculator;
+
+
+formControl: {
+    width: '80%',
+    flexDirection: 'row'
+  },
+  label: {
+      color: Colors.secondaryColor,
+      fontFamily: 'open-sans',
+      fontSize: hp('1.8%'),
+      marginVertical: 8,
+      marginEnd: 10,
+      marginStart: 30
+  },
+  input: {
+    paddingHorizontal: 2,
+    paddingVertical: 5,
+    borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
+    width: '10%',
+    alignContent: 'space-between'
+  },
+  pickerContainer: {
+      flex:1,
+      alignItems: Platform.OS === 'ios' ? 'flex-end' : (Platform.OS === 'android' ? 'flex-start' : 'flex-start'),
+      //width: wp('100%'),
+      fontSize: hp('1.9%'),
+
+  },
+  calculateButtonContainer: {
+      justifyContent: "flex-end",
+      alignItems: "center",
+      marginTop: Platform.OS === 'ios' ? 200 : (Platform.OS === 'android' ? 150 : 150)
+  },
+  calculateButton: {
+      height: 80
+      
+  },
+  calculateButtonText: {
+      fontSize: hp('1.9%'),
+  },
+  checkBoxContainer: {
+      flexDirection: 'row',
+      alignContent: "space-between",
+      justifyContent: "space-around",
+      marginTop: 20,
+      marginLeft: Platform.OS === 'ios' ? 50 : (Platform.OS === 'android' ? 100 : 120)
+  },
+  separator: {
+      marginVertical: 5,
+      borderBottomColor: '#737373',
+      borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  height: {
+      flexDirection: 'row',
+      marginBottom: 20
+  },
+  ageWeight: {
+      flexDirection: 'row',
+      marginBottom: 20
+  }
