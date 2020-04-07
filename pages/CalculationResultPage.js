@@ -25,7 +25,9 @@ const CalculationResultPage = props => {
               })
             }}
           >
-          <Text style={styles.resetButton}>BACK TO CALCULATOR</Text>
+          <View style={styles.resetButtonContainer}>
+            <Text style={styles.resetButton}>BACK TO CALCULATOR</Text>
+          </View>
         </TouchableOpacity>
     </View>
   );
@@ -50,12 +52,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: wp('100%'),
   },
-  resetButton: {
+  resetButtonContainer: {
     marginTop: 20,
     borderColor: '#c5e1a5',
     borderWidth: 2,
     borderRadius: 25,
-    width: wp('40%'),
+    width: wp('50%'),
+    color: Colors.secondaryColor,
+    padding: 5,
+    justifyContent: 'center',
+    alignItems: "center",
+    alignContent: 'center'
+  },
+  resetButton: {
     color: Colors.secondaryColor,
     padding: 10,
     justifyContent: 'center',
@@ -71,8 +80,8 @@ const styles = StyleSheet.create({
   resultDisplay: {
     marginVertical: 20,
     borderWidth: 1,
-    borderRadius: 20,
-    width: wp('25%'),
+    borderRadius: 30,
+    width: wp('35%'),
     backgroundColor: Colors.primaryColor,
     color: Colors.secondaryColor,
     padding: 40,

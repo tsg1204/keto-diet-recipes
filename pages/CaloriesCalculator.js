@@ -93,7 +93,7 @@ const CaloriesCalculator = props => {
                             style={styles.input}
                             autoCapitalize='none'
                             autoCorrect={false}
-                            placeholder="21"
+                            placeholder="00"
                             returnKeyType={ 'next' }
                             blurOnSubmit={ false }
                             value={age}
@@ -114,7 +114,7 @@ const CaloriesCalculator = props => {
                             style={styles.input}   
                             autoCapitalize='none'  
                             autoCorrect={false}                       
-                            placeholder="152"
+                            placeholder="000"
                             blurOnSubmit={ false }
                             value={weight}
                             keyboardType="numeric"
@@ -291,10 +291,11 @@ export const screenOptions = () =>  {
       alignContent: 'space-between'
     },
     pickerContainer: {
-        // flex:1,
+        flex:1,
+        marginTop: Platform.OS === 'ios' ? 0 : (Platform.OS === 'android' ? 10 : 10),
         // fontSize: hp('1.2%'),
-        // alignItems: Platform.OS === 'ios' ? 'flex-end' : (Platform.OS === 'android' ? 'flex-start' : 'flex-start'),
-        // width: wp('100%'),
+        alignItems: Platform.OS === 'ios' ? 'flex-end' : (Platform.OS === 'android' ? 'flex-start' : 'flex-start'),
+        width: wp('100%'),
     },
     calculateButtonContainer: {
         borderColor: '#c5e1a5',
@@ -305,7 +306,7 @@ export const screenOptions = () =>  {
         padding: 10,
         justifyContent: "flex-end",
         alignItems: "center",
-        marginTop: Platform.OS === 'ios' ? 200 : (Platform.OS === 'android' ? 150 : 150)
+        marginTop: Platform.OS === 'ios' ? 100 : (Platform.OS === 'android' ? 50 : 50)
     },
     resetButtonContainer: {
         borderColor: '#c5e1a5',
