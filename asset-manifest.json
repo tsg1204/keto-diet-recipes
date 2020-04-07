@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/keto-diet-recipes/static/js/app.bc8a2a36.chunk.js",
-    "app.js.map": "/keto-diet-recipes/static/js/app.bc8a2a36.chunk.js.map",
+    "app.js": "/keto-diet-recipes/static/js/app.d32b2d9e.chunk.js",
+    "app.js.map": "/keto-diet-recipes/static/js/app.d32b2d9e.chunk.js.map",
     "runtime~app.js": "/keto-diet-recipes/static/js/runtime~app.e031ded3.js",
     "runtime~app.js.map": "/keto-diet-recipes/static/js/runtime~app.e031ded3.js.map",
-    "static/js/2.2464e7f3.chunk.js": "/keto-diet-recipes/static/js/2.2464e7f3.chunk.js",
-    "static/js/2.2464e7f3.chunk.js.map": "/keto-diet-recipes/static/js/2.2464e7f3.chunk.js.map",
+    "static/js/2.602d7ffe.chunk.js": "/keto-diet-recipes/static/js/2.602d7ffe.chunk.js",
+    "static/js/2.602d7ffe.chunk.js.map": "/keto-diet-recipes/static/js/2.602d7ffe.chunk.js.map",
     "fonts/AntDesign.ttf": "/keto-diet-recipes/./fonts/AntDesign.ttf",
     "fonts/Entypo.ttf": "/keto-diet-recipes/./fonts/Entypo.ttf",
     "fonts/Feather.ttf": "/keto-diet-recipes/./fonts/Feather.ttf",
@@ -32,7 +32,7 @@
   },
   "entrypoints": [
     "static/js/runtime~app.e031ded3.js",
-    "static/js/2.2464e7f3.chunk.js",
-    "static/js/app.bc8a2a36.chunk.js"
+    "static/js/2.602d7ffe.chunk.js",
+    "static/js/app.d32b2d9e.chunk.js"
   ]
 }
