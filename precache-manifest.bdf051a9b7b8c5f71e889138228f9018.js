@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/keto-diet-recipes/./fonts/Feather.ttf"
   },
   {
-    "revision": "62220640697fa95f2d94",
-    "url": "/keto-diet-recipes/static/js/app.86286908.chunk.js"
+    "revision": "8463e138587529fb7668",
+    "url": "/keto-diet-recipes/static/js/app.d61437f4.chunk.js"
   },
   {
     "revision": "05cc5ef57139a5c5c987",
@@ -40,16 +40,16 @@ self.__precacheManifest = [
     "url": "/keto-diet-recipes/serve.json"
   },
   {
-    "revision": "49ad0c0d6215e3576ae3",
-    "url": "/keto-diet-recipes/static/js/2.9cfa7bd0.chunk.js"
+    "revision": "cc6777c1a9e6263b8328",
+    "url": "/keto-diet-recipes/static/js/2.ca6ff2ab.chunk.js"
   },
   {
     "revision": "872545dde71de3842234bf6afe80c4cb",
     "url": "/keto-diet-recipes/./fonts/FontAwesome5_Solid.ttf"
   },
   {
-    "revision": "b2e0fc821c6886fb3940f85a3320003e",
-    "url": "/keto-diet-recipes/./fonts/Ionicons.ttf"
+    "revision": "a37b0c01c0baf1888ca812cc0508f6e2",
+    "url": "/keto-diet-recipes/./fonts/MaterialIcons.ttf"
   },
   {
     "revision": "d2285965fe34b05465047401b8595dd0",
@@ -60,16 +60,12 @@ self.__precacheManifest = [
     "url": "/keto-diet-recipes/manifest.json"
   },
   {
-    "revision": "2692636ea874e89c2bd3a87ebafe6a9c",
+    "revision": "cef46a5b6d6113bda629ce9a8abb9669",
     "url": "/keto-diet-recipes/index.html"
   },
   {
     "revision": "5a798cdadc7cd321e3f72425b70bface",
     "url": "/keto-diet-recipes/./fonts/OpenSans-Regular.ttf"
-  },
-  {
-    "revision": "a37b0c01c0baf1888ca812cc0508f6e2",
-    "url": "/keto-diet-recipes/./fonts/MaterialIcons.ttf"
   },
   {
     "revision": "62273473911e68575ace8d48f6ebd399",
@@ -80,16 +76,20 @@ self.__precacheManifest = [
     "url": "/keto-diet-recipes/favicon-32.png"
   },
   {
-    "revision": "5a293a273bee8d740a045d9922b9a9ae",
-    "url": "/keto-diet-recipes/./fonts/MaterialCommunityIcons.ttf"
+    "revision": "e10ce0552ee7802193950fa9181bd961",
+    "url": "/keto-diet-recipes/favicon-16.png"
   },
   {
     "revision": "48c7ed4e7da9792af288a60d7242d615",
     "url": "/keto-diet-recipes/expo-service-worker.js"
   },
   {
-    "revision": "e10ce0552ee7802193950fa9181bd961",
-    "url": "/keto-diet-recipes/favicon-16.png"
+    "revision": "5a293a273bee8d740a045d9922b9a9ae",
+    "url": "/keto-diet-recipes/./fonts/MaterialCommunityIcons.ttf"
+  },
+  {
+    "revision": "b2e0fc821c6886fb3940f85a3320003e",
+    "url": "/keto-diet-recipes/./fonts/Ionicons.ttf"
   },
   {
     "revision": "e20945d7c929279ef7a6f1db184a4470",
