@@ -1,20 +1,56 @@
-import React, { useEffect } from 'react';
-import { View, Text, StyleSheet , SafeAreaView, FlatList, TouchableOpacity, Platform} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet , SafeAreaView, FlatList, TouchableOpacity, Platform, Dimensions} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
  } from 'react-native-responsive-screen';
 import Constants from 'expo-constants';
+import { RecyclerListView, DataProvider, LayoutProvider } from 'recyclerlistview';
 
 import { Colors } from '../data/data';
 import { fetchCategories } from '../store/actions/recipes';
+import { TextInput } from 'react-native-gesture-handler';
 //https://reactnative.dev/docs/flatlist
 //https://reactnative.dev/docs/platform-specific-code
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const CategoriesPage = props => {
   const catList = useSelector(state => state.recipes.categories);
   //console.log('catList from CategoriesPage:', catList)
+  //test: implementing RecyclerListView
+  // const newList = [];
+  // for(let i = 0; i < catList.length; i++) {
+  //   newList.push({
+  //     type:'NORMAL',
+  //     item: {
+  //       id: catList._id,
+  //       title: catList.title,
+  //       recipes: catList.recipes
+  //     }
+  //   })
+  // }
+
+  // let [currentList, setCurrentList] = useState([]);
+  // setCurrentList(currentList = new DataProvider((r1, r2) => r1 != r2).cloneWithRows(newList));
+  // console.log('currentList: ', currentList);
+
+  // const layoutProvider = new LayoutProvider((i) => {
+  //   return currentList.getDataForIndex(i).type;
+  // }, (type, dim) => {
+  //   switch (type) {
+  //     case 'NORMAL':
+  //       dim.width = SCREEN_WIDTH;
+  //       dim.height = 100;
+  //       break;
+  //     default:
+  //       dim.width = 0;
+  //       dim.height = 0;
+  //   }
+  // })
+
+  //end test
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,6 +75,15 @@ const CategoriesPage = props => {
     );
   };
 
+  const rowRenderer = (type, data) => {
+    const { id, title, recipes } = data.item;
+    return (
+      <View>
+        <Text>{title}</Text>
+      </View>
+    )
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -46,7 +91,7 @@ const CategoriesPage = props => {
         data={catList.sort((a,b) => a.id-b.id)}
         renderItem={renderGridItem}
         //numColumns={2}
-    />    
+      />    
     </SafeAreaView>
   );
 };
@@ -55,7 +100,7 @@ export const screenOptions = () =>  {
   return {
     headerTitle: 'Keto Recipes Categories',
     headerStyle: {
-      backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
+      backgroundColor: Colors.primaryColor,
     },
     headerTintColor: Colors.secondaryColor 
   }

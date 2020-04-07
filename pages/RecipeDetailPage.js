@@ -90,7 +90,7 @@ export const screenOptions = navData => {
   return {
     headerTitle: ` ${recipeTitle}`,
     headerStyle: {
-      backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
+      backgroundColor: Colors.primaryColor,
     },
     headerTintColor: Colors.secondaryColor,
     headerRight: () =>

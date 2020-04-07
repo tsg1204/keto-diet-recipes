@@ -97,7 +97,7 @@ export const screenOptions = () =>  {
   return {
     headerTitle: 'Favorite Recipes',
     headerStyle: {
-      backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
+      backgroundColor: Colors.primaryColor,
     },
     headerTintColor: Colors.secondaryColor 
   }

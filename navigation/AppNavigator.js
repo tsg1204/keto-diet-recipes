@@ -73,6 +73,11 @@ export const CalcNavigator = () => {
         component={CaloriesCalculator}
         options={calculatorPageOptions}
       />
+      <CalculatorStackNavigator.Screen
+        name="CalculationResult"
+        component={CalcResultNavigator}
+        options={calculationResultPageOptions}
+      />
     </CalculatorStackNavigator.Navigator>
   );
 };

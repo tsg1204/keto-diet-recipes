@@ -1,5 +1,5 @@
 import React, { useEffect }  from 'react';
-import { View, Text, Dimensions, StyleSheet, FlatList, TouchableOpacity, Platform, ImageBackground } from 'react-native';
+import { View, Text, TextInput, Dimensions, StyleSheet, FlatList, TouchableOpacity, Platform, ImageBackground } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   heightPercentageToDP as hp,
@@ -40,7 +40,7 @@ const CategoryRecipePage = props => {
           }}          
         >
           <View key={id}>
-            <View style={{ ...styles.listRow, ...styles.listHeader }} >
+            <View style={{ ...styles.listRow}} >
               <ImageBackground
                 source={{ uri: image }}
                 style={styles.bgImage}
@@ -94,7 +94,7 @@ export const screenOptions = navData => {
   return {
     headerTitle: `${categoryTitle}`,
     headerStyle: {
-      backgroundColor: Platform.OS === 'ios' ? '' : Colors.primaryColor,
+      backgroundColor: Colors.primaryColor,
     },
     headerTintColor: Colors.secondaryColor 
   }
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     //have to adjust images size
     width: Platform.OS === 'ios' ? Dimensions.get('screen').width : Dimensions.get('window').width,
     height: Platform.OS === 'ios' ? Dimensions.get('screen').width*.5 : Dimensions.get('window').width*.2,
-    justifyContent: 'flex-end',
+    justifyContent: 'flex-end'
   },
   listRow: {
     flexDirection: 'row'
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans-bold',
     fontSize: hp('1.9%'),
     color: 'white',
-    textAlign: 'center'
+    textAlign: 'center',
   },
   duration: {
     fontFamily: 'open-sans',
