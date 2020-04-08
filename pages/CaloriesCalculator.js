@@ -35,30 +35,18 @@ const CaloriesCalculator = props => {
     const textInchesInput = useRef();
 
     const [activity, setActivityFactor] = useState('bmr');
+
     const [dailyCalories, setDailyCalories] = useState('');
     const [showResult, setShowResult] = useState(false);
     const [inputs, setInputs] = useState(defaults);
     const [reset, setReset] = useState(false);
 
-
-    //const focusAgeInput = () => textAgeInput.current.focus();
-
-    console.log('default inputs: ', inputs)
-
-    const focusNextField = (id) => {
-        console.log('inputs fields: ', id)
-        inputs[id].current.focus()
-    }
-
-    // const onChangeText = (text) => {
-    //     ['age', 'weight', 'feet', 'inches']
-    //       .map((name) => ({ name, ref: [name] }))
-    //       .forEach(({ name, ref }) => {
-    //         if (ref.current.focus()) {
-    //           useState({ [name]: text });
-    //         }
-    //       });
-    //   }
+    useEffect(() => {
+        textAgeInput.current && textAgeInput.current.focus()
+        if( age.length === 2 ) textWeightInput.current && textWeightInput.current.focus();
+        if( weight.length === 3 ) textFeetInput.current && textFeetInput.current.focus();
+        if ( feet.length === 1) textInchesInput.current && textInchesInput.current.focus();
+    });
 
     const calculateCalories = () => {
         if (feet === '') setFeet('0');
@@ -102,9 +90,7 @@ const CaloriesCalculator = props => {
                             style={styles.input}
                             autoCapitalize='none'
                             autoCorrect={false}
-                            //enablesReturnKeyAutomatically={true}
                             placeholder="00"
-                            //onFocus={focusAgeInput}
                             returnKeyType={ 'done' }
                             blurOnSubmit={ false }
                             defaultValue={age}
@@ -113,10 +99,7 @@ const CaloriesCalculator = props => {
                             onChangeText={text => {   
                                 setAge(text);
                             }}
-                            onSubmitEditing={() => {
-                                focusNextField('weight')
-                            }}
-                            ref={input => inputs['age'] = input}
+                            ref={textAgeInput}
                         />
                     </View>   
                     <View style={styles.ageWeight}>
@@ -130,11 +113,8 @@ const CaloriesCalculator = props => {
                             value={weight}
                             keyboardType="numeric"
                             onChangeText={text => setWeight(text)}
-                            onSubmitEditing={() => {
-                                focusNextField('feet')
-                            }}
                             returnKeyType={ 'next' }
-                            ref={input => inputs['weight'] = input}
+                            ref={textWeightInput}
                         />
                     </View>  
                     <View style={styles.height}>
@@ -148,11 +128,8 @@ const CaloriesCalculator = props => {
                                 value={feet}
                                 keyboardType="numeric"
                                 onChangeText={text => setFeet(text)}
-                                onSubmitEditing={() => {
-                                    focusNextField('inches')
-                                }}
                                 returnKeyType={ 'next' }
-                                ref={input => inputs['feet'] = input}
+                                ref={textFeetInput}
                             />
                             <Text style={styles.label}>ft</Text>
                             <Text style={styles.label}></Text>
@@ -161,12 +138,12 @@ const CaloriesCalculator = props => {
                                 autoCapitalize='none'
                                 autoCorrect={false}
                                 placeholder="00"
-                                returnKeyType={ "done" }
+                                returnKeyType={ "next" }
                                 blurOnSubmit={ false }
                                 value={inches}
                                 keyboardType="numeric"
                                 onChangeText={text=> setInches(text)}
-                                ref={input => inputs['inches'] = input}
+                                ref={textInchesInput}
                             />
                             <Text style={styles.label}>in</Text>
                         </View>
