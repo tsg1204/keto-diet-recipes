@@ -9,13 +9,6 @@ import {
 import { menBMR, womenBMR, activityIndicator } from "../utils/helper";
 import { Colors } from '../data/data';
 
-let defaults = {
-    age: '',
-    weight: '',
-    feet: '',
-    inches: ''
-  };
-
 const CaloriesCalculator = props => {
     //reset all calculator parameters when back from result page
     const resetCalculator = reset || null;
@@ -38,8 +31,8 @@ const CaloriesCalculator = props => {
 
     const [dailyCalories, setDailyCalories] = useState('');
     const [showResult, setShowResult] = useState(false);
-    const [inputs, setInputs] = useState(defaults);
     const [reset, setReset] = useState(false);
+    //https://medium.com/javascript-in-plain-english/react-refs-both-class-and-functional-components-76b7bce487b8
 
     useEffect(() => {
         textAgeInput.current && textAgeInput.current.focus()
