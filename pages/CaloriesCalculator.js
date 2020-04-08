@@ -9,6 +9,13 @@ import {
 import { menBMR, womenBMR, activityIndicator } from "../utils/helper";
 import { Colors } from '../data/data';
 
+let defaults = {
+    age: '',
+    weight: '',
+    feet: '',
+    inches: ''
+  };
+
 const CaloriesCalculator = props => {
     //reset all calculator parameters when back from result page
     const resetCalculator = reset || null;
@@ -16,20 +23,43 @@ const CaloriesCalculator = props => {
 
     const [gender, setGender] = useState('female');
     const [age, setAge] = useState('');
+    const textAgeInput = useRef();
 
     const [weight, setWeight] = useState('');
+    const textWeightInput = useRef();
+
     const [feet, setFeet] = useState('');
+    const textFeetInput = useRef();
+
     const [inches, setInches] = useState('');
+    const textInchesInput = useRef();
+
     const [activity, setActivityFactor] = useState('bmr');
     const [dailyCalories, setDailyCalories] = useState('');
     const [showResult, setShowResult] = useState(false);
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState(defaults);
     const [reset, setReset] = useState(false);
 
-    const focusNextField = async (id) => {
-        await inputs[id].current.focus()
-        console.log('inputs fields: ', inputs[id])
+
+    const focusAgeInput = () => textAgeInput.current.focus();
+
+    console.log('default inputs: ', inputs)
+
+    const focusNextField = (id) => {
+        console.log('inputs fields: ', id)
+        inputs[id].current.focus()
     }
+
+    const onChangeText = (text) => {
+        ['age', 'weight', 'feet', 'inches']
+          .map((name) => ({ name, ref: [name] }))
+          .forEach(({ name, ref }) => {
+            if (ref.current.focus()) {
+              useState({ [name]: text });
+            }
+          });
+      }
+
     const calculateCalories = () => {
         if (feet === '') setFeet('0');
         if (inches === '') setInches('0');
@@ -56,7 +86,7 @@ const CaloriesCalculator = props => {
     
     function InputForm() {
         return (
-            <ScrollView>
+            <ScrollView keyboardShouldPersistTaps='handled'>
                 <View style={styles.container}>
                     <View style={styles.checkBoxContainer}>
                         <CheckBox
@@ -76,18 +106,21 @@ const CaloriesCalculator = props => {
                             style={styles.input}
                             autoCapitalize='none'
                             autoCorrect={false}
+                            //enablesReturnKeyAutomatically={true}
                             placeholder="00"
-                            returnKeyType={ 'next' }
+                            //onFocus={focusAgeInput}
+                            returnKeyType={ 'done' }
                             blurOnSubmit={ false }
-                            value={age}
+                            defaultValue={age}
                             keyboardType='numeric'
                             numberOfLines={1}
-                            onChangeText={text => {
-                                setAge(text)
+                            onChangeText={text => {   
+                                setAge(text);
                             }}
                             onSubmitEditing={() => {
-                                focusNextField('weight')                            }}
-                            //ref={inputAgeRef}
+                                focusNextField('weight')
+                            }}
+                            ref={input => inputs['age'] = input}
                         />
                     </View>   
                     <View style={styles.ageWeight}>
