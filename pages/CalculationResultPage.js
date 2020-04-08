@@ -15,6 +15,9 @@ const CalculationResultPage = props => {
   return (
     <View style={styles.container}>
         <Text styles={styles.resultLabel}>YOUR PERSONAL RESULT of DAILY CALORIE INTAKE</Text>
+        <View styles={styles.resultDesc}>
+        <Text >This is the total number of calories daily you need in order to maintain your current weight.</Text>
+        </View>        
         <View style={styles.resultDisplay}>
           <Text style={styles.resultText}>{result}</Text>
         </View>
@@ -76,6 +79,12 @@ const styles = StyleSheet.create({
     color: Colors.secondaryColor,
     fontFamily: 'open-sans-bold',
     fontSize: hp('1.9%'),
+  },
+  resultDesc: {
+    marginBottom: 30,
+    color: Colors.secondaryColor,
+    fontFamily: 'open-sans',
+    fontSize: hp('1.8%'),
   },
   resultDisplay: {
     marginVertical: 20,
