@@ -41,7 +41,7 @@ const CaloriesCalculator = props => {
     const [reset, setReset] = useState(false);
 
 
-    const focusAgeInput = () => textAgeInput.current.focus();
+    //const focusAgeInput = () => textAgeInput.current.focus();
 
     console.log('default inputs: ', inputs)
 
@@ -50,15 +50,15 @@ const CaloriesCalculator = props => {
         inputs[id].current.focus()
     }
 
-    const onChangeText = (text) => {
-        ['age', 'weight', 'feet', 'inches']
-          .map((name) => ({ name, ref: [name] }))
-          .forEach(({ name, ref }) => {
-            if (ref.current.focus()) {
-              useState({ [name]: text });
-            }
-          });
-      }
+    // const onChangeText = (text) => {
+    //     ['age', 'weight', 'feet', 'inches']
+    //       .map((name) => ({ name, ref: [name] }))
+    //       .forEach(({ name, ref }) => {
+    //         if (ref.current.focus()) {
+    //           useState({ [name]: text });
+    //         }
+    //       });
+    //   }
 
     const calculateCalories = () => {
         if (feet === '') setFeet('0');

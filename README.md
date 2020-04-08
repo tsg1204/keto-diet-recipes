@@ -16,7 +16,8 @@ npm start or expo start
 iOS\
 ![start app image](assets/start-page.png)
 ![ios image](assets/ios-img.png)\
-![ios image](assets/ios-calculator.png)\
+![ios image](assets/ios-calculator.png)
+![ios image](assets/ios-calc-result.png)\
 Android\
 ![android image](assets/android-img.png)\
 Web App\
