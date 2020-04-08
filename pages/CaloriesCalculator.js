@@ -79,10 +79,6 @@ const CaloriesCalculator = props => {
             console.log('dailyCalories: ', daily)
         }
     };
-
-    function Separator() {
-        return <View style={styles.separator} />;
-    }
     
     function InputForm() {
         return (
