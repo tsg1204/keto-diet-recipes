@@ -43,9 +43,9 @@ const CaloriesCalculator = props => {
 
     useEffect(() => {
         textAgeInput.current && textAgeInput.current.focus()
-        if( age.length === 2 ) textWeightInput.current && textWeightInput.current.focus();
-        if( weight.length === 3 ) textFeetInput.current && textFeetInput.current.focus();
-        if ( feet.length === 1) textInchesInput.current && textInchesInput.current.focus();
+        if( age.length >= 2 ) textWeightInput.current && textWeightInput.current.focus();
+        if( weight.length >= 3 ) textFeetInput.current && textFeetInput.current.focus();
+        if ( feet.length >= 1) textInchesInput.current && textInchesInput.current.focus();
     });
 
     const calculateCalories = () => {

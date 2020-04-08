@@ -8,15 +8,13 @@ import Constants from 'expo-constants';
 import { Colors } from '../data/data';
 
 const CalculationResultPage = props => {
-  //console.log('props from result page: ', props)
-  
   const result = props.route.params.dailyCalories;
 
   return (
     <View style={styles.container}>
-        <Text styles={styles.resultLabel}>YOUR PERSONAL RESULT of DAILY CALORIE INTAKE</Text>
-        <View styles={styles.resultDesc}>
-        <Text >This is the total number of calories daily you need in order to maintain your current weight.</Text>
+        <Text style={styles.resultLabel}>YOUR PERSONAL RESULT of DAILY CALORIE INTAKE</Text>
+        <View >
+          <Text style={styles.resultDesc}>This is the total number of calories daily you need in order to maintain your current weight.</Text>
         </View>        
         <View style={styles.resultDisplay}>
           <Text style={styles.resultText}>{result}</Text>
@@ -79,12 +77,18 @@ const styles = StyleSheet.create({
     color: Colors.secondaryColor,
     fontFamily: 'open-sans-bold',
     fontSize: hp('1.9%'),
+    justifyContent: 'center',
+    alignItems: "center",
+    alignContent: 'center'
   },
   resultDesc: {
     marginBottom: 30,
     color: Colors.secondaryColor,
     fontFamily: 'open-sans',
     fontSize: hp('1.8%'),
+    justifyContent: 'center',
+    alignItems: "center",
+    alignContent: 'center'
   },
   resultDisplay: {
     marginVertical: 20,
@@ -92,7 +96,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: wp('35%'),
     backgroundColor: Colors.primaryColor,
-    //color: Colors.secondaryColor,
     padding: 40,
     justifyContent: 'center',
     alignItems: "center",
