@@ -30,7 +30,7 @@ const ListItem = items => {
   );
 };
 
-const RecipeDetailPage = (props, ASProps, ASState) => {
+const RecipeDetailPage = props => {
   //const { showActionSheetWithOptions } = useActionSheet();
   //const [selectedIndex, setSelectedIndex ] = useState(ASState.selectedIndex = null);
 

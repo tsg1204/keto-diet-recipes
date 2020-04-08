@@ -63,7 +63,7 @@ const CaloriesCalculator = props => {
     
     function InputForm() {
         return (
-            <ScrollView keyboardShouldPersistTaps='handled'>
+            <ScrollView>
                 <View style={styles.container}>
                     <View style={styles.checkBoxContainer}>
                         <CheckBox
