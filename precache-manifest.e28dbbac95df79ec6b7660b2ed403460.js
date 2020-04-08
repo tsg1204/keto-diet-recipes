@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/keto-diet-recipes/./fonts/Feather.ttf"
   },
   {
-    "revision": "3e1a0398c9fbf37ef1ac",
-    "url": "/keto-diet-recipes/static/js/app.1d89c908.chunk.js"
+    "revision": "b39adfee4e8f7ecaecef",
+    "url": "/keto-diet-recipes/static/js/app.3db12c0c.chunk.js"
   },
   {
     "revision": "05cc5ef57139a5c5c987",
@@ -60,7 +60,7 @@ self.__precacheManifest = [
     "url": "/keto-diet-recipes/manifest.json"
   },
   {
-    "revision": "7b6d036445871bb8c5f970bab6b08a80",
+    "revision": "be4781c7e17c58cfb17221e58f8fbf7f",
     "url": "/keto-diet-recipes/index.html"
   },
   {
