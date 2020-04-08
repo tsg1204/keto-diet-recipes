@@ -14,7 +14,7 @@ const CalculationResultPage = props => {
 
   return (
     <View style={styles.container}>
-        <Text styles={styles.resultLabel}>YOUR PERSONAL RESULT:</Text>
+        <Text styles={styles.resultLabel}>YOUR PERSONAL RESULT of DAILY CALORIE INTAKE</Text>
         <View style={styles.resultDisplay}>
           <Text style={styles.resultText}>{result}</Text>
         </View>
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 25,
     width: wp('50%'),
-    color: Colors.secondaryColor,
+    //color: Colors.secondaryColor,
     padding: 5,
     justifyContent: 'center',
     alignItems: "center",
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: Colors.secondaryColor,
     fontFamily: 'open-sans-bold',
-    fontSize: hp('1.8%'),
+    fontSize: hp('1.9%'),
   },
   resultDisplay: {
     marginVertical: 20,
@@ -83,14 +83,14 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: wp('35%'),
     backgroundColor: Colors.primaryColor,
-    color: Colors.secondaryColor,
+    //color: Colors.secondaryColor,
     padding: 40,
     justifyContent: 'center',
     alignItems: "center",
     alignContent: 'center'
   },
   resultText: {
-    fontSize: 'open-sans-bold',
+    fontFamily: 'open-sans-bold',
     fontSize: hp('3%'),
   }
 });

@@ -9,6 +9,13 @@ import {
 import { menBMR, womenBMR, activityIndicator } from "../utils/helper";
 import { Colors } from '../data/data';
 
+let defaults = {
+    age: '',
+    weight: '',
+    feet: '',
+    inches: '',
+  };
+
 const CaloriesCalculator = props => {
     //reset all calculator parameters when back from result page
     const resetCalculator = reset || null;
@@ -16,21 +23,80 @@ const CaloriesCalculator = props => {
 
     const [gender, setGender] = useState('female');
     const [age, setAge] = useState('');
+    const inputAgeRef = useRef('age');
 
     const [weight, setWeight] = useState('');
+    const inputWeightRef = useRef('weight');
+
     const [feet, setFeet] = useState('');
+    const inputFeetRef = useRef('feet')
+
     const [inches, setInches] = useState('');
+    const inputInchesRef = useRef('inches')
+
     const [activity, setActivityFactor] = useState('bmr');
     const [dailyCalories, setDailyCalories] = useState('');
     const [showResult, setShowResult] = useState(false);
-    const [inputs, setInputs] = useState({});
-    const [reset, setReset] = useState(false);
 
-    const focusNextField = async (id) => {
-        await inputs[id].current.focus()
-        console.log('inputs fields: ', inputs[id])
+    const [reset, setReset] = useState(false);
+    const [errors, setErrors] = useState(defaults);
+    console.log('defaults ok, now errors: ', errors)
+
+    const onFocus = () => {
+        //console.log( 'defaults from onFocus:', defaults)
+        let  errors = {} = defaults;
+        console.log('errors from onFocus: ', errors)
+        for (let name in errors) {
+          let ref = name;
+  console.log('ref from onFocus: ', ref)
+          if (ref ) {
+            delete errors.name;
+          }
+        }
+  
+        setErrors({ errors });
     }
+    
+    const onChangeText = (text) => {
+        ['age', 'weight', 'feet', 'inches']
+          .map((name) => ({ name, ref: [name] }))
+          .forEach(({ name, ref }) => {
+            if (ref.current.focus()) {
+              useState({ [name]: text });
+            }
+          });
+      }
+
+    const onSubmitAge = () => {
+        inputAgeRef.current.focus();
+    }
+  
+    const  onSubmitWeight = () => {
+        inputWeightRef.current.focus();
+    }
+  
+    const onSubmitFeet = () => {
+        inputFeetRef.current.focus();
+    }
+  
+    const onSubmitInches = () => {
+        inputInchesRef.current.focus();
+    }
+
     const calculateCalories = () => {
+        let errors = {};
+
+        ['age', 'weight', 'feet', 'inches']
+          .forEach((name) => {
+            let value = name.value;
+  
+            if (!value) {
+              errors[name] = 'Should not be empty';
+            } 
+          });
+
+        setErrors({ errors });
+        
         if (feet === '') setFeet('0');
         if (inches === '') setInches('0');
         let height = (parseInt(feet)*12 + parseInt(inches)) ;
@@ -76,18 +142,20 @@ const CaloriesCalculator = props => {
                             style={styles.input}
                             autoCapitalize='none'
                             autoCorrect={false}
+                            enablesReturnKeyAutomatically={true}
                             placeholder="00"
-                            returnKeyType={ 'next' }
-                            blurOnSubmit={ false }
-                            value={age}
+                            value={defaults.age}
                             keyboardType='numeric'
-                            numberOfLines={1}
+                            //autoFocus={true}
+                            //onFocus={onFocus}
                             onChangeText={text => {
                                 setAge(text)
                             }}
-                            onSubmitEditing={() => {
-                                focusNextField('weight')                            }}
-                            //ref={inputAgeRef}
+                            onSubmitEditing={onSubmitAge}
+                            returnKeyType={ 'next' }
+                            blurOnSubmit={ false }
+                            ref={inputAgeRef}
+                            error={errors.age}
                         />
                     </View>   
                     <View style={styles.ageWeight}>
@@ -97,50 +165,53 @@ const CaloriesCalculator = props => {
                             autoCapitalize='none'  
                             autoCorrect={false}                       
                             placeholder="000"
-                            blurOnSubmit={ false }
-                            value={weight}
+                            value={defaults.weight}
                             keyboardType="numeric"
-                            onChangeText={text => setWeight(text)}
-                            onSubmitEditing={() => {
-                                focusNextField('feet')
-                            }}
+                            //onFocus={onFocus}
+                            onChangeText={onChangeText}
+                            onSubmitEditing={onSubmitWeight}
                             returnKeyType={ 'next' }
-                            ref={input => inputs['weight'] = input}
+                            blurOnSubmit={ false }
+                            ref={inputWeightRef}
+                            error={errors.weight}
                         />
                     </View>  
                     <View style={styles.height}>
-                            <Text style={styles.label}>How tall are you?  </Text>
-                            <TextInput
-                                style={styles.input}
-                                autoCapitalize='none'
-                                autoCorrect={false}
-                                placeholder="0"
-                                blurOnSubmit={ false }
-                                value={feet}
-                                keyboardType="numeric"
-                                onChangeText={text => setFeet(text)}
-                                onSubmitEditing={() => {
-                                    focusNextField('inches')
-                                }}
-                                returnKeyType={ 'next' }
-                                ref={input => inputs['feet'] = input}
-                            />
-                            <Text style={styles.label}>ft</Text>
-                            <Text style={styles.label}></Text>
-                            <TextInput
-                                style={styles.input}
-                                autoCapitalize='none'
-                                autoCorrect={false}
-                                placeholder="00"
-                                returnKeyType={ "done" }
-                                blurOnSubmit={ false }
-                                value={inches}
-                                keyboardType="numeric"
-                                onChangeText={text=> setInches(text)}
-                                ref={input => inputs['inches'] = input}
-                            />
-                            <Text style={styles.label}>in</Text>
-                        </View>
+                        <Text style={styles.label}>How tall are you?  </Text>
+                        <TextInput
+                            style={styles.input}
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            placeholder="0"
+                            value={defaults.feet}
+                            keyboardType="numeric"
+                            //onFocus={onFocus}
+                            onChangeText={onChangeText}
+                            onSubmitEditing={onSubmitFeet}
+                            returnKeyType={ 'next' }
+                            blurOnSubmit={ false }
+                            ref={inputFeetRef}
+                            error={errors.feet}
+                        />
+                        <Text style={styles.label}>ft</Text>
+                        <Text style={styles.label}></Text>
+                        <TextInput
+                            style={styles.input}
+                            autoCapitalize='none'
+                            autoCorrect={false}
+                            placeholder="00"
+                            value={defaults.inches}
+                            keyboardType="numeric"
+                            //onFocus={onFocus}
+                            onChangeText={onChangeText}
+                            onSubmitEditing={onSubmitInches}
+                            returnKeyType={ 'done' }
+                            blurOnSubmit={ false }
+                            ref={inputInchesRef}
+                            error={errors.inches}
+                        />
+                        <Text style={styles.label}>in</Text>
+                    </View>
                     <View style={styles.formControl}>
                         <Text style={styles.label}>How active are you on daily basis?  </Text>
                         <View style={styles.pickerContainer}>
@@ -316,5 +387,7 @@ export const screenOptions = () =>  {
         marginBottom: 20
     }
   });
+
+
   
 export default CaloriesCalculator;
